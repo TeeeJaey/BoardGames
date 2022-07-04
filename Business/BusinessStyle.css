@@ -1,0 +1,409 @@
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+    background-color: #1f0303;
+}
+
+html {
+    min-width: 740px;
+}
+body {
+    background-color: #fff5d7;
+    text-align: center;
+    padding: 0px;
+}
+.board,
+#theBoard {
+    width: 600px;
+    height: 600px;
+}
+
+#theBoard {
+    position: relative;
+    left: 10%;
+}
+
+.coin {
+    position: absolute;
+    top: 520px;
+    left: 530px;
+    width: 30px;
+    height: 45px;
+}
+
+.instruct {
+    background-color: #fff5d7;
+    padding: 15px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.game-btns {
+    margin-top: 20px;
+    font-size: 22px;
+    width: 48%;
+}
+
+.btn-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.btnDiff {
+    font-size: 20px;
+    width: 30%;
+}
+.btnDiff.active {
+    pointer-events: none;
+    background-color: rgba(255, 245, 215, 0.8);
+    border: 3px solid Green;
+}
+
+.swal2-popup {
+    font-size: 1.6rem !important;
+}
+
+.bldgCoin {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 418px;
+    left: 73px;
+    z-index: 2;
+}
+
+#btnMenu {
+    font-size: 26px;
+    width: 180px;
+    position: absolute;
+    top: 50px;
+    right: 0%;
+}
+#menu {
+    width: 200px;
+    position: absolute;
+    top: 100px;
+    right: 0%;
+}
+.menuBtns {
+    width: 180px;
+    font-size: 26px;
+    margin-left: 20px;
+}
+
+#restart,
+#start {
+    width: 150px;
+    height: 70px;
+    font-size: 20px;
+}
+
+#allControls {
+    background-color: #ff5e6c;
+    font-size: 22px;
+    position: absolute;
+    top: 65px;
+    left: 55%;
+    width: 500px;
+    padding: 20px;
+    margin: 10px 0px;
+}
+
+#diceContainer {
+    width: 60%;
+    margin: auto;
+    cursor: pointer;
+}
+
+.playerData {
+    color: black;
+    background-color: #fff5d7;
+    height: 100px;
+    font-size: 26px;
+    margin: 15px;
+    position: relative;
+}
+
+.dataCoin {
+    width: 40px;
+    height: 60px;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+}
+.cityIcon {
+    width: 50px;
+    height: 40px;
+    position: absolute;
+    top: 0px;
+    left: 55px;
+}
+.houseIcon {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0px;
+    left: 144px;
+}
+.hotelIcon {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0px;
+    left: 225px;
+}
+.moneyIcon {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 50px;
+    left: 60px;
+}
+
+.cityValue {
+    position: absolute;
+    top: 5px;
+    left: 115px;
+}
+.houseValue {
+    position: absolute;
+    top: 5px;
+    left: 200px;
+}
+.hotelValue {
+    position: absolute;
+    top: 5px;
+    left: 275px;
+}
+.moneyValue {
+    position: absolute;
+    top: 55px;
+    left: 110px;
+}
+.currChanceData {
+    border: 2px solid Black;
+    background-color: White;
+}
+.currentChanceBtns {
+    height: 100%;
+    position: absolute;
+    left: 320px;
+}
+#btnWork,
+#btnDone {
+    margin-top: 10px;
+    padding: 5px 25px;
+}
+
+#theDice,
+.dice {
+    margin: auto;
+    width: 100px;
+    height: 100px;
+}
+
+#allRules {
+    color: white;
+    background-color: rgb(219, 170, 10);
+    box-shadow: 20px 20px 20px #777;
+    font-size: 30px;
+    position: fixed;
+    top: 100px;
+    right: -500px;
+    width: 500px;
+    height: 500px;
+    padding: 20px;
+    margin: auto;
+    z-index: 100;
+}
+
+#rulesContainer {
+    background-color: #fff5d7;
+    height: 410px;
+    margin: auto;
+    overflow-y: scroll;
+}
+.imgRule {
+    width: 90%;
+    margin: 10px 0px;
+}
+.closeBox {
+    cursor: pointer;
+}
+
+#allLogs {
+    color: white;
+    background-color: rgb(219, 170, 10);
+    box-shadow: 20px 20px 20px #777;
+    font-size: 30px;
+    position: fixed;
+    top: 100px;
+    right: -500px;
+    width: 500px;
+    height: 500px;
+    padding: 20px;
+    margin: auto;
+    z-index: 50;
+}
+#logsContainer {
+    background-color: #fff5d7;
+    height: 410px;
+    margin: auto;
+    overflow-y: scroll;
+}
+.logItem {
+    margin: auto;
+    margin-top: 10px;
+    font-size: 15px;
+    padding: 5px;
+    background-color: white;
+    color: black;
+}
+.logCoin {
+    width: 30px;
+    height: 40px;
+}
+
+.workProperty {
+    max-width: 30%;
+    margin: 5px;
+    cursor: pointer;
+    max-height: 95%;
+}
+
+.workPropertySelected {
+    opacity: 25%;
+    border: 5px solid black;
+}
+.workRadioBtns {
+    font-size: 15px;
+    width: 101px;
+    margin: 10px;
+    padding: 10px;
+}
+
+#TradeTray {
+    color: white;
+    background-color: rgb(219, 170, 10);
+    box-shadow: 20px 20px 20px #777;
+    font-size: 30px;
+    position: fixed;
+    top: 90px;
+    right: -650px;
+    width: 650px;
+    height: 580px;
+    padding: 20px;
+    margin: auto;
+    z-index: 25;
+}
+
+.tradeCoin {
+    width: 20px;
+    height: 30px;
+}
+.tradeBtns {
+    padding: 10px 20px;
+}
+
+#tradeLeftPropertyContainer,
+#tradeRightPropertyContainer {
+    background-color: #fff5d7;
+    height: 350px;
+    margin: auto;
+    overflow-y: scroll;
+}
+
+.imageLeftPropertyTrade,
+.imageRightPropertyTrade {
+    width: 80%;
+    cursor: pointer;
+    margin: 10px;
+}
+.tradeImageSelected {
+    opacity: 25%;
+    border: 5px solid black;
+}
+
+#confirmTrade,
+#closeTrade {
+    width: 90%;
+    padding: 10px;
+    margin-top: 10%;
+}
+
+.bankruptOverlay {
+    background-color: rgba(0, 0, 0);
+    opacity: 35%;
+    height: 100%;
+    width: 100%;
+}
+.bankruptData {
+    display: none;
+    background-color: #a22;
+    border-radius: 250px;
+    z-index: 12;
+    opacity: 100%;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    width: 70%;
+    margin: auto;
+    position: relative;
+    top: -95px;
+}
+
+/* DARK THEME -- START */
+body.dark {
+    background-color: #22272e;
+}
+body.dark .controls,
+body.dark #allControls {
+    background: #30363c;
+}
+
+body.dark .btn-default {
+    color: #adbac7;
+    background: #373e47;
+    border-color: #ccc;
+}
+body.dark .btn-default:hover {
+    color: white;
+    background: #444c56;
+    border-color: white;
+}
+body.dark .instruct,
+body.dark .playerData {
+    color: white;
+    background: #22272e;
+}
+body.dark .currChanceData {
+    background: #495056;
+    border: 1px solid red;
+}
+body.dark .btnDiff.active {
+    color: black;
+    background: #fff5d7cc;
+}
+/* DARK THEME -- END */
+
+@media (max-width: 1285px) {
+    #allControls {
+        position: absolute;
+        top: 750px;
+        left: 10%;
+    }
+
+    #btnMenu {
+        top: 700px;
+    }
+
+    #menu {
+        top: 750px;
+    }
+}
