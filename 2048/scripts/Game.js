@@ -163,6 +163,6 @@ class Game {
             }
         });
 
-        $("#score")[0].innerHTML = Math.ceil(total / this.moves);
+        $("#score")[0].innerHTML = Math.ceil(total);
     }
 }
