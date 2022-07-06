@@ -64,7 +64,10 @@ function play() {
 
                 players[currPlayer].inJail = false;
                 moveCoin(currCoin);
-            } else isChanceOn = false;
+            } else {
+                isChanceOn = false;
+                $("#btnDone").prop("disabled", false);
+            }
         });
     } else {
         players[currPlayer].inJail = false;
@@ -101,6 +104,7 @@ function moveCoin() {
             clearInterval(coinMoveAnim);
             checkCell();
             isChanceOn = false;
+            $("#btnDone").prop("disabled", false);
             return;
         }
         cnt += 1;
@@ -348,6 +352,25 @@ function setTheme() {
     }
 }
 
+function highlightDoneBtn() {
+    $("#btnDone")[0].style.border = "2px solid Yellow";
+    setTimeout(() => {
+        $("#btnDone")[0].style.border = "";
+        setTimeout(() => {
+            $("#btnDone")[0].style.border = "2px solid Yellow";
+            setTimeout(() => {
+                $("#btnDone")[0].style.border = "";
+                setTimeout(() => {
+                    $("#btnDone")[0].style.border = "2px solid Yellow";
+                    setTimeout(() => {
+                        $("#btnDone")[0].style.border = "";
+                    }, 200);
+                }, 200);
+            }, 200);
+        }, 200);
+    }, 200);
+}
+
 $(document).ready(function () {
     importNavbar("Business", "Business");
     setTheme();
@@ -369,6 +392,7 @@ $(document).ready(function () {
     $("#saveGame").prop("disabled", true);
     $("#btnTrade").prop("disabled", true);
     $("#btnLogs").prop("disabled", true);
+    $("#btnDone").prop("disabled", true);
 
     //#endregion "Initial displays"
 
@@ -383,7 +407,10 @@ $(document).ready(function () {
     $("#diceContainer").click(function () {
         if (!gameStarted) return;
         if (gameOver) return;
-        if (diceRolled) return;
+        if (diceRolled) {
+            highlightDoneBtn();
+            return;
+        }
         if (isChanceOn) return;
 
         if (players[currPlayer].money < 0) {
@@ -412,6 +439,7 @@ $(document).ready(function () {
         if (diceRolled) {
             changePlayer();
             diceRolled = false;
+            $("#btnDone").prop("disabled", true);
         }
         return;
     });
