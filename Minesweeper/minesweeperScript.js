@@ -64,6 +64,7 @@ $(document).ready(function () {
     function revealAll() {
         for (var i = 0; i < boardSize; i++) {
             for (var j = 0; j < boardSize; j++) {
+                board[i][j].markedAsMine = false;
                 board[i][j].revealed = true;
                 cell = $($($("#theBoard").children().children()[i]).children()[j]).children()[0];
 
@@ -103,12 +104,12 @@ $(document).ready(function () {
                             case 0:
                                 cell.style.backgroundColor = "#fff";
                                 revealNeighbours(x, y);
-                                board[7][8].markedAsMine = false;
+                                board[x][y].markedAsMine = false;
                                 break;
 
                             default:
                                 cell.style.backgroundColor = "#ddd";
-                                board[7][8].markedAsMine = false;
+                                board[x][y].markedAsMine = false;
                                 cell.innerHTML = board[x][y].value;
                                 break;
                         }
