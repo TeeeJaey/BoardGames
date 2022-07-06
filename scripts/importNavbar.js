@@ -112,13 +112,13 @@ function importNavbar(htmlName, displayName) {
 				<li><a href="../SnakeNLadder/SnakeLadder.html">Snake & Ladder</a></li>
 				<li><a href="../Connect4/Connect4.html">Connect 4</a></li>
 				<li><a href="../Business/Business.html">Business</a></li>
-				<li><a href="../Sudoku/sudoku.html">Sudoku</a></li>
-				<li><a href="../DotsNBoxes/dotsNBoxes.html">Dots & Boxes</a></li>
+				<li><a href="../Sudoku/Sudoku.html">Sudoku</a></li>
+				<li><a href="../DotsNBoxes/DotsNBoxes.html">Dots & Boxes</a></li>
 				<li><a href="../DealOrNoDeal/DealNoDeal.html">Deal Or NoDeal</a></li>
 				<li><a href="../Ludo/Ludo.html">Ludo</a></li>
-				<li><a href="../Tetris/tetris.html">Tetris</a></li>
-				<li><a href="../Snake/snake.html">Snake</a></li>
-				<li><a href="../Wordle/wordle.html">Wordle</a></li>
+				<li><a href="../Tetris/Tetris.html">Tetris</a></li>
+				<li><a href="../Snake/Snake.html">Snake</a></li>
+				<li><a href="../Wordle/Wordle.html">Wordle</a></li>
 				<li><a href="../2048/2048.html">2048</a></li>
 			</ul>
 		</div>
@@ -151,13 +151,13 @@ function importNavbar(htmlName, displayName) {
 	<a href="../SnakeNLadder/SnakeLadder.html" >Snake & Ladder</a>
 	<a href="../Connect4/Connect4.html" >Connect 4</a>
 	<a href="../Business/Business.html" >Business</a>
-	<a href="../Sudoku/sudoku.html" >Sudoku</a>
-	<a href="../DotsNBoxes/dotsNBoxes.html" >Dots & Boxes</a>
+	<a href="../Sudoku/Sudoku.html" >Sudoku</a>
+	<a href="../DotsNBoxes/DotsNBoxes.html" >Dots & Boxes</a>
 	<a href="../DealOrNoDeal/DealNoDeal.html" >Deal Or NoDeal</a>
 	<a href="../Ludo/Ludo.html" >Ludo</a>
-	<a href="../Tetris/tetris.html" >Tetris</a>
-	<a href="../Snake/snake.html" >Snake</a>
-	<a href="../Wordle/wordle.html" >Wordle</a>
+	<a href="../Tetris/Tetris.html" >Tetris</a>
+	<a href="../Snake/Snake.html" >Snake</a>
+	<a href="../Wordle/Wordle.html" >Wordle</a>
 	<a href="../2048/2048.html" >2048</a>
 </div>
 			`;

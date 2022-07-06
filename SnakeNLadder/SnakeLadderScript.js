@@ -95,6 +95,7 @@ $(document).ready(function () {
                 board[18].snakeOrLadder = new SnakeLadder(18, 1);
                 board[22].snakeOrLadder = new SnakeLadder(22, 37);
                 board[26].snakeOrLadder = new SnakeLadder(26, 10);
+                board[38].snakeOrLadder = new SnakeLadder(38, 59);
                 board[39].snakeOrLadder = new SnakeLadder(39, 5);
                 board[49].snakeOrLadder = new SnakeLadder(49, 67);
                 board[51].snakeOrLadder = new SnakeLadder(51, 6);
