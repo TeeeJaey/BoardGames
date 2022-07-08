@@ -73,14 +73,14 @@ body {
     text-align: center;
     padding-bottom: 5px;
     padding: 10px;
-    font-size: 20px;
+    font-size: 14px;
 }
 
 .footerLinks {
     text-decoration: inherit !important;
     color: inherit;
     padding: 0px 10px;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .searchLinks {
@@ -135,9 +135,10 @@ body {
         font-weight: bold;
     }
     .footer {
-        font-size: 16px;
+        font-size: 12px;
     }
     .footerLinks {
-        font-size: 20px;
+        font-size: 16px;
+        padding: 5px;
     }
 }

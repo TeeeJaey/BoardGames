@@ -81,7 +81,7 @@ class PlayerCoin {
         const bgColor = "#ff6347";
         $("#" + this.id).css({
             background: bgColor,
-            "z-index": (this.location.mTopVal + 1000).toString(),
+            "z-index": (this.location.mTopVal + 500).toString(),
         });
 
         this.highlighted = true;
