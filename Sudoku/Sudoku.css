@@ -14,6 +14,10 @@ body {
     text-align: center;
 }
 
+.swal2-popup {
+    font-size: 1.6rem !important;
+}
+
 .cell,
 .numPadCell {
     font-size: 30px;
@@ -35,8 +39,11 @@ body {
 .selectedCell {
     background-color: darksalmon;
 }
+.highlightedCell {
+    background-color: rgb(251 255 99);
+}
 
-.initCells {
+.fixedCell {
     font-weight: 850;
 }
 
@@ -114,6 +121,12 @@ body.dark .btn-default:hover {
 body.dark .instruct {
     color: white;
     background: #22272e;
+}
+body.dark .btnDiff.active {
+    pointer-events: none;
+    background-color: rgba(255, 245, 215, 0.8);
+    color: #333;
+    border: 3px solid Green;
 }
 /* DARK THEME -- END */
 

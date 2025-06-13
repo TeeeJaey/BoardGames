@@ -16,7 +16,7 @@ function checkNumberKey(btn) {
 
     var cell = getBoardCellByID(selectedCellID);
 
-    if (cell.init) return;
+    if (cell.fixed) return;
 
     cell.value = btn;
     game.refreshUI();
@@ -220,18 +220,42 @@ $(document).ready(function () {
     });
 
     $(document.body).on("click", "#btnNewGame", function () {
-        localStorage.boardgame_sudoku = undefined;
-        document.location.reload(true);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You may lose your progress!!!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, I confirm!",
+        }).then(result => {
+            if (result.isConfirmed) {
+                localStorage.boardgame_sudoku = undefined;
+                document.location.reload(true);
+            }
+        });
     });
 
     $(document.body).on("click", "#btnResetGame", function () {
-        game.resetCurrGame();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You may lose your progress!!!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, I confirm!",
+        }).then(result => {
+            if (result.isConfirmed) {
+                game.resetCurrGame();
 
-        if (selectedCellID) {
-            var prevCell = getBoardCellByID(selectedCellID);
-            prevCell.isSelected = false;
-            selectedCellID = null;
-        }
+                if (selectedCellID) {
+                    var prevCell = getBoardCellByID(selectedCellID);
+                    prevCell.isSelected = false;
+                    selectedCellID = null;
+                }
+            }
+        });
     });
 
     $(document.body).on("click", ".cell", function () {
@@ -249,7 +273,7 @@ $(document).ready(function () {
             newCell.isSelected = true;
             selectedCellID = this.id;
         }
-
+        game.refreshUI();
         mainContentVue.game = game;
         return;
     });

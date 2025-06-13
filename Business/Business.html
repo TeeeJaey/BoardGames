@@ -4,7 +4,10 @@
         <title>Business</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
 
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -54,9 +57,13 @@
                         <input type="radio" name="nmbrOfPlayers" autocomplete="off" value="2" checked /> 2
                     </label>
 
-                    <label class="btn btn-default btnDiff"> <input type="radio" name="nmbrOfPlayers" value="3" autocomplete="off" /> 3 </label>
+                    <label class="btn btn-default btnDiff">
+                        <input type="radio" name="nmbrOfPlayers" value="3" autocomplete="off" /> 3
+                    </label>
 
-                    <label class="btn btn-default btnDiff"> <input type="radio" name="nmbrOfPlayers" value="4" autocomplete="off" /> 4 </label>
+                    <label class="btn btn-default btnDiff">
+                        <input type="radio" name="nmbrOfPlayers" value="4" autocomplete="off" /> 4
+                    </label>
                 </div>
 
                 <hr />
@@ -190,7 +197,14 @@
         </div>
 
         <!-- Load game Modal -->
-        <div class="modal fade" style="margin-top: 200px" id="loadGameModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div
+            id="loadGameModal"
+            class="modal fade"
+            style="margin-top: 200px"
+            tabindex="-1"
+            role="dialog"
+            aria-hidden="true"
+        >
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -200,15 +214,26 @@
                         <input type="file" id="loadGameFile" class="btn" accept="application/JSON" />
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 150px">Cancel</button>
-                        <button type="button" class="btn btn-success" id="loadGameSubmit" style="width: 150px">Load Game</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 150px">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-success" id="loadGameSubmit" style="width: 150px">
+                            Load Game
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Property Sale modal -->
-        <div class="modal fade" style="margin-top: 100px" id="PropertySaleModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div
+            id="PropertySaleModal"
+            class="modal fade"
+            style="margin-top: 100px"
+            tabindex="-1"
+            role="dialog"
+            aria-hidden="true"
+        >
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -246,7 +271,14 @@
         </div>
 
         <!-- Property Auction modal -->
-        <div id="PropertyAuctionModal" class="modal fade" style="margin-top: 100px" tabindex="-1" role="dialog" aria-hidden="true">
+        <div
+            id="PropertyAuctionModal"
+            class="modal fade"
+            style="margin-top: 100px"
+            tabindex="-1"
+            role="dialog"
+            aria-hidden="true"
+        >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -254,15 +286,31 @@
                     </div>
                     <div class="modal-body">
                         <img style="width: 45%; float: left" id="imagePropertyAuction" src="images/properties/1.png" />
-                        <img style="width: 85px; margin-left: 20px; float: left; display: none" id="imageHighestBidder" src="images/red.png" />
+                        <img
+                            style="width: 85px; margin-left: 20px; float: left; display: none"
+                            id="imageHighestBidder"
+                            src="images/red.png"
+                        />
                         <h3><i class="fa fa-gavel"></i> <span id="currentBidAmt"> 0 </span></h3>
                     </div>
                     <div class="modal-footer">
-                        <div style="width: 45%; margin: 15px 25px; float: left; font-size: 25px" class="d-flex justify-content-center my-4">
-                            <span class="font-weight-bold" id="auctionBidLabel" style="color: black; margin-right: 100px">0</span>
+                        <div
+                            style="width: 45%; margin: 15px 25px; float: left; font-size: 25px"
+                            class="d-flex justify-content-center my-4"
+                        >
+                            <span
+                                class="font-weight-bold"
+                                id="auctionBidLabel"
+                                style="color: black; margin-right: 100px"
+                                >0</span
+                            >
                             <input type="range" class="custom-range" id="auctionBidSlider" />
                         </div>
-                        <img style="width: 85px; margin-left: 20px; float: left" id="imageCurrentBider" src="images/blue.png" />
+                        <img
+                            style="width: 85px; margin-left: 20px; float: left"
+                            id="imageCurrentBider"
+                            src="images/blue.png"
+                        />
                         <button
                             type="button"
                             class="btn btn-success"
@@ -305,12 +353,17 @@
 
                     <div class="modal-body">
                         <div style="font-size: 22px">
-                            <div style="width: 50%; float: left"><i class="fa fa-shopping-bag"></i> <span id="workWalletAmount"> 0 </span></div>
-                            <div style="width: 50%; float: right"><i class="fa fa-exchange"></i> <span id="workChangeAmount"> 0 </span></div>
+                            <div style="width: 50%; float: left">
+                                <i class="fa fa-shopping-bag"></i> <span id="workWalletAmount"> 0 </span>
+                            </div>
+                            <div style="width: 50%; float: right">
+                                <i class="fa fa-exchange"></i> <span id="workChangeAmount"> 0 </span>
+                            </div>
                         </div>
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-info workRadioBtns active">
-                                <input type="radio" name="workRadioBtns" id="btnWorkBuild" value="build" checked /> Build
+                                <input type="radio" name="workRadioBtns" id="btnWorkBuild" value="build" checked />
+                                Build
                             </label>
                             <label class="btn btn-info workRadioBtns">
                                 <input type="radio" name="workRadioBtns" id="btnWorkSell" value="sell" /> Sell
@@ -319,13 +372,20 @@
                                 <input type="radio" name="workRadioBtns" id="btnWorkRedeem" value="redeem" /> Redeem
                             </label>
                             <label class="btn btn-info workRadioBtns">
-                                <input type="radio" name="workRadioBtns" id="btnWorkMortgage" value="mortgage" /> Mortgage
+                                <input type="radio" name="workRadioBtns" id="btnWorkMortgage" value="mortgage" />
+                                Mortgage
                             </label>
                         </div>
 
                         <div
                             id="workPropertyContainer"
-                            style="margin-left: 25px; width: 90%; height: 300px; overflow-y: scroll; background-color: rgb(247, 211, 164)"
+                            style="
+                                margin-left: 25px;
+                                width: 90%;
+                                height: 300px;
+                                overflow-y: scroll;
+                                background-color: rgb(247, 211, 164);
+                            "
                         >
                             <img class="workProperty" src="images/properties/37.png" />
                             <img class="workProperty" src="images/properties/39.png" />
@@ -339,10 +399,20 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" id="btnWorkConfirm" style="width: 30%; height: 40px; font-size: 20px">
+                        <button
+                            type="button"
+                            class="btn btn-success"
+                            id="btnWorkConfirm"
+                            style="width: 30%; height: 40px; font-size: 20px"
+                        >
                             Confirm
                         </button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal" style="width: 30%; height: 40px; font-size: 20px">
+                        <button
+                            type="button"
+                            class="btn btn-danger"
+                            data-dismiss="modal"
+                            style="width: 30%; height: 40px; font-size: 20px"
+                        >
                             Cancel
                         </button>
                     </div>
@@ -374,7 +444,11 @@
                     <div id="tradeLeftPropertyContainer"></div>
 
                     <div class="d-flex justify-content-center my-4">
-                        <span class="font-weight-bold text-primary ml-2" id="tradeLeftAmountLabel" style="color: rgb(55, 255, 55)"></span>
+                        <span
+                            class="font-weight-bold text-primary ml-2"
+                            id="tradeLeftAmountLabel"
+                            style="color: rgb(55, 255, 55)"
+                        ></span>
                         <div class="w-75">
                             <input type="range" class="custom-range" id="tradeLeftAmountSlider" />
                         </div>
@@ -403,7 +477,11 @@
                     <div id="tradeRightPropertyContainer"></div>
 
                     <div class="d-flex justify-content-center my-4">
-                        <span class="font-weight-bold text-primary ml-2" id="tradeRightAmountLabel" style="color: rgb(55, 255, 55)"></span>
+                        <span
+                            class="font-weight-bold text-primary ml-2"
+                            id="tradeRightAmountLabel"
+                            style="color: rgb(55, 255, 55)"
+                        ></span>
                         <div class="w-75">
                             <input type="range" class="custom-range" id="tradeRightAmountSlider" />
                         </div>

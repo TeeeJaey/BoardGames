@@ -14,6 +14,10 @@ body {
     text-align: center;
 }
 
+.swal2-popup {
+    font-size: 1.6rem !important;
+}
+
 .board,
 #theBoard {
     width: 600px;

@@ -29,6 +29,7 @@ $(document).ready(function () {
     $(".board").css({ display: "none" });
 
     var gameStarted = false;
+    var start3turns = 0;
     var isAnimationOn = false;
     var gameOver = false;
 
@@ -217,6 +218,25 @@ $(document).ready(function () {
         gameStarted = true;
     });
 
+    const startNewGame = function () {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You may lose your progress!!!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, I confirm!",
+        }).then(result => {
+            if (result.isConfirmed) {
+                document.location.reload(true);
+            }
+        });
+    };
+
+    $("#newGame1").click(startNewGame);
+    $("#newGame2").click(startNewGame);
+
     function rollDice() {
         isAnimationOn = true;
         var cnt = 0;
@@ -276,7 +296,10 @@ $(document).ready(function () {
 
         players[currPlayer].topVal = board[players[currPlayer].position].topVal;
         players[currPlayer].leftVal = board[players[currPlayer].position].leftVal;
-        currCoin.animate({ top: players[currPlayer].topVal.toString() + "px", left: players[currPlayer].leftVal.toString() + "px" }, 700);
+        currCoin.animate(
+            { top: players[currPlayer].topVal.toString() + "px", left: players[currPlayer].leftVal.toString() + "px" },
+            700,
+        );
     }
 
     function changePlayer() {
@@ -301,16 +324,25 @@ $(document).ready(function () {
 
     function play() {
         $(".dice").attr("src", "images/dice" + diceVal.toString() + ".png");
-
         $("#instruct").css("color", players[currPlayer].color);
-        $("#instruct").text(players[currPlayer].color + " Played : " + diceVal);
 
         var currCoin = $("#" + players[currPlayer].color + "Coin");
 
-        if (players[currPlayer].started) moveCoin(currCoin);
-        else {
-            if (diceVal == 6) players[currPlayer].started = true;
-            else changePlayer();
+        if (players[currPlayer].started) {
+            $("#instruct").text(players[currPlayer].color + " Played : " + diceVal);
+            moveCoin(currCoin);
+        } else {
+            if (diceVal == 6) {
+                $("#instruct").text(players[currPlayer].color + " Played : " + diceVal);
+                players[currPlayer].started = true;
+                start3turns = 0;
+            } else {
+                start3turns += 1;
+                if (start3turns == 3) {
+                    start3turns = 0;
+                    changePlayer();
+                }
+            }
             isAnimationOn = false;
         }
         return;

@@ -75,8 +75,20 @@ $(document).ready(function () {
     });
 
     const startNewGame = function () {
-        delete localStorage.boardgame_ludo;
-        document.location.reload(true);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You may lose your progress!!!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, I confirm!",
+        }).then(result => {
+            if (result.isConfirmed) {
+                delete localStorage.boardgame_ludo;
+                document.location.reload(true);
+            }
+        });
     };
 
     $(document.body).on("click", "#btnGetNewGame", startNewGame);

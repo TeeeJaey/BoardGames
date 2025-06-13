@@ -15,6 +15,10 @@ body {
     text-align: center;
 }
 
+.swal2-popup {
+    font-size: 1.6rem !important;
+}
+
 td {
     border: 1px solid black;
 }
@@ -118,7 +122,7 @@ body.dark .btn-default:hover {
 }
 body.dark .instruct {
     color: white;
-    background: #22272e;
+    background: #abafb5;
 }
 /* DARK THEME -- END */
 

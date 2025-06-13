@@ -8,6 +8,7 @@
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 		 
@@ -29,16 +30,23 @@
 					<tr v-for="row in game.fullBoard">
 						<td v-for="x in row">
 
-							<div v-if="!x.isSelected">
-								<button class="cell initCells" v-bind:id="x.id"  v-if="x.init"  				v-bind:style="{backgroundColor: x.currColor}" > {{x.value}} </button>
-								<button class="cell userCells" v-bind:id="x.id"  v-if="!x.init && x.value > 0"	v-bind:style="{backgroundColor: x.currColor}" > {{x.value}} </button>
-								<button class="cell userCells" v-bind:id="x.id"  v-if="!x.init && x.value == 0"	v-bind:style="{backgroundColor: x.currColor}" >  			 </button>
+							<div v-if="!x.isSelected & !x.isHighlighted">
+								<button class="cell fixedCell" v-bind:id="x.id"  v-if="x.fixed"  				  v-bind:style="{backgroundColor: x.currColor}" > {{x.value}} </button>
+								<button class="cell userCell"  v-bind:id="x.id"  v-if="!x.fixed && x.value > 0"	  v-bind:style="{backgroundColor: x.currColor}" > {{x.value}} </button>
+								<button class="cell userCell"  v-bind:id="x.id"  v-if="!x.fixed && x.value == 0"  v-bind:style="{backgroundColor: x.currColor}" >  			 </button>
 							</div>
 
 							<div v-if="x.isSelected">
-								<button class="cell initCells selectedCell" v-bind:id="x.id"  v-if="x.init"   > {{x.value}} </button>
-								<button class="cell userCells selectedCell" v-bind:id="x.id"  v-if="!x.init && x.value > 0"   > {{x.value}} </button>
-								<button class="cell userCells selectedCell" v-bind:id="x.id"  v-if="!x.init && x.value == 0"  >  		   </button>
+								<button class="cell fixedCell selectedCell" v-bind:id="x.id"  v-if="x.fixed"   > {{x.value}} </button>
+								<button class="cell userCell selectedCell"  v-bind:id="x.id"  v-if="!x.fixed && x.value > 0"   > {{x.value}} </button>
+								<button class="cell userCell selectedCell"  v-bind:id="x.id"  v-if="!x.fixed && x.value == 0"  >  		   </button>
+							</div>
+							
+
+							<div v-if="x.isHighlighted">
+								<button class="cell fixedCell highlightedCell" v-bind:id="x.id"  v-if="x.fixed"   > {{x.value}} </button>
+								<button class="cell userCell highlightedCell"  v-bind:id="x.id"  v-if="!x.fixed && x.value > 0"   > {{x.value}} </button>
+								<button class="cell userCell highlightedCell"  v-bind:id="x.id"  v-if="!x.fixed && x.value == 0"  >  		   </button>
 							</div>
 							
 						</td>
@@ -119,7 +127,7 @@
 						<h4 class="instruct" > Woah! You won </h4>
 						<hr>
 						<hr>
-						<button id="btStartAgain" class="btn btn-default game-btns" > Get new game </button>
+						<button id="btnNewGame" class="btn btn-default game-btns" > Get new game </button>
 					</div>
 				</div>
 			</div>

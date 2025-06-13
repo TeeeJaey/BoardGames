@@ -384,7 +384,7 @@ body.dark .playerData {
 }
 body.dark .currChanceData {
     background: #495056;
-    border: 1px solid red;
+    border: 1px solid white;
 }
 body.dark .btnDiff.active {
     color: black;

@@ -20,6 +20,23 @@ function setTheme() {
     }
 }
 
+const startNewGame = function () {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You may lose your progress!!!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, I confirm!",
+    }).then(result => {
+        if (result.isConfirmed) {
+            localStorage.boardgame_sudoku = undefined;
+            document.location.reload(true);
+        }
+    });
+};
+
 $(document).ready(function () {
     importNavbar("wordle", "Wordle");
     setTheme();
@@ -76,7 +93,6 @@ $(document).ready(function () {
     });
 
     $(document.body).on("click", "#btnNewGame", function () {
-        localStorage.boardgame_sudoku = undefined;
-        document.location.reload(true);
+        startNewGame();
     });
 });

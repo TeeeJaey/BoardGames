@@ -213,6 +213,23 @@ function setTheme() {
     }
 }
 
+const startNewGame = function () {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You may lose your progress!!!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, I confirm!",
+    }).then(result => {
+        if (result.isConfirmed) {
+            localStorage.boardgame_dotsNboxes = undefined;
+            document.location.reload(true);
+        }
+    });
+};
+
 $(document).ready(function () {
     importNavbar("dotsNBoxes", "Dots & Boxes");
     setTheme();
@@ -243,8 +260,7 @@ $(document).ready(function () {
     });
 
     $(document.body).on("click", "#btnStartGame", function () {
-        localStorage.boardgame_dotsNboxes = undefined;
-        document.location.reload(true);
+        startNewGame();
         return;
     });
 });

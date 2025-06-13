@@ -6,7 +6,7 @@ class Cell {
         this.y = j;
         this.initColor = color;
         this.currColor = color;
-        this.init = false;
+        this.fixed = false;
         this.value = 0;
 
         return;

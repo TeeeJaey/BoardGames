@@ -13,6 +13,11 @@ body {
     background-color: #fef6dd;
     text-align: center;
 }
+
+.swal2-popup {
+    font-size: 1.6rem !important;
+}
+
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -97,7 +102,6 @@ body {
 }
 .nonKeyCell {
     padding: 0px 5px;
-    font-size: small;
 }
 .keyboardCell:active {
     background: darksalmon;

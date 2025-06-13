@@ -49,7 +49,7 @@ class Game {
         for (var i = 0; i < this.boardData.length; i += 1) {
             var cell = this.boardData[i];
             if (cell.value > 0) {
-                fullBoard[cell.x][cell.y].init = true;
+                fullBoard[cell.x][cell.y].fixed = true;
                 fullBoard[cell.x][cell.y].value = cell.value;
             }
         }
@@ -369,6 +369,22 @@ class Game {
         //#endregion
     }
 
+    colorHighlightedSqrs(value) {
+        const highlightColor = "#ffb74d";
+
+        if (value < 1 || value > 9) return;
+
+        for (var i = 0; i < 9; i += 1) {
+            for (var j = 0; j < 9; j += 1) {
+                if (this.fullBoard[i][j].value == value) {
+                    this.fullBoard[i][j].currColor = highlightColor;
+                } else if (!this.fullBoard[i][j].fixed) {
+                    this.fullBoard[i][j].currColor = this.fullBoard[i][j].initColor;
+                }
+            }
+        }
+    }
+
     checkZeros() {
         for (var i = 0; i < 9; i += 1) {
             for (var j = 0; j < 9; j += 1) {
@@ -397,13 +413,21 @@ class Game {
                 prevCell.isSelected = false;
             }
         }
+
+        if (selectedCellID) {
+            var selectedCell = getBoardCellByID(selectedCellID);
+            if (selectedCell.value) {
+                console.log(selectedCell.value);
+                this.colorHighlightedSqrs(selectedCell.value);
+            }
+        }
         this.autoSaveGame();
     }
 
     resetCurrGame() {
         for (var i = 0; i < 9; i += 1) {
             for (var j = 0; j < 9; j += 1) {
-                if (!this.fullBoard[i][j].init) this.fullBoard[i][j].value = 0;
+                if (!this.fullBoard[i][j].fixed) this.fullBoard[i][j].value = 0;
             }
         }
         this.refreshUI();
@@ -425,7 +449,6 @@ class Game {
             game.difficultyText = loadedgame.difficultyText;
             game.boardData = loadedgame.boardData;
             game.fullBoard = loadedgame.fullBoard;
-            selectedCellID = loadedgame.selectedCellID;
 
             mainContentVue.controls = 0;
             return true;
