@@ -1,75 +1,31 @@
-function setTheme() {
-    const theme = window.localStorage.getItem("boardgame_theme");
-    if (theme && theme == "dark") {
-        $("body").addClass("dark");
-    } else {
-        $("body").removeClass("dark");
-    }
-}
+class Game {
+    board = [];
+    boardImgNmbr = 0;
+    gameStarted = false;
+    start3turns = 0;
+    isAnimationOn = false;
+    gameOver = false;
 
-$(document).ready(function () {
-    importNavbar("SnakeLadder", "Snake & Ladder");
-    setTheme();
-    $(document.body).on("click", "#changeTheme", () => {
-        if (window.localStorage.boardgame_theme && window.localStorage.boardgame_theme == "dark") {
-            window.localStorage.boardgame_theme = "light";
-        } else window.localStorage.boardgame_theme = "dark";
+    players = [];
+    nmbrOfPlayers = 2;
+    currPlayer = 0;
+    diceVal = 0;
 
-        setTheme();
-    });
-
-    var boardImgNmbr = 0;
-    var boardImgPath = "images/board" + boardImgNmbr + ".jpg";
-    $(".board").attr("src", boardImgPath);
-
-    $("#startcontrols").css("display", "");
-    $("#gameControls").css("display", "none");
-    $("#endControls").css("display", "none");
-    $(".coin").css({ display: "none" });
-    $(".board").css({ display: "none" });
-
-    var gameStarted = false;
-    var start3turns = 0;
-    var isAnimationOn = false;
-    var gameOver = false;
-
-    var nmbrOfPlayers = 2;
-    var currPlayer = 0;
-    var diceVal = 0;
-
-    class Cell {
-        constructor(position, topVal, leftVal, snakeLadder) {
-            this.position = position;
-            this.topVal = topVal;
-            this.leftVal = leftVal;
-            this.snakeOrLadder = snakeLadder;
-        }
+    setBoardImage(boardImgNmbr = 0) {
+        this.boardImgNmbr = boardImgNmbr;
+        var boardImgPath = "images/board" + this.boardImgNmbr + ".jpg";
+        $(".board").attr("src", boardImgPath);
     }
 
-    class SnakeLadder {
-        constructor(startPos, endPos) {
-            this.startPos = startPos;
-            this.endPos = endPos;
-        }
-    }
+    setupBoard() {
+        var { board, boardImgNmbr } = this;
 
-    class Player {
-        constructor(color, position, topVal, leftVal, started) {
-            this.color = color;
-            this.position = position;
-            this.topVal = topVal;
-            this.leftVal = leftVal;
-            this.started = started;
-        }
-    }
-
-    var board = [];
-    function setupBoard() {
         var boardWidth = $("#theBoard").width();
         var t = boardWidth - boardWidth / 10;
         var l = -40;
         var d = boardWidth / 10;
         board.push(new Cell(0, t, l, null));
+
         var dirleft = false;
         var i = 1;
         while (i <= 100) {
@@ -102,8 +58,10 @@ $(document).ready(function () {
                 board[51].snakeOrLadder = new SnakeLadder(51, 6);
                 board[54].snakeOrLadder = new SnakeLadder(54, 36);
                 board[56].snakeOrLadder = new SnakeLadder(56, 1);
+                board[57].snakeOrLadder = new SnakeLadder(57, 76);
                 board[60].snakeOrLadder = new SnakeLadder(60, 23);
                 board[61].snakeOrLadder = new SnakeLadder(61, 78);
+                board[73].snakeOrLadder = new SnakeLadder(73, 86);
                 board[75].snakeOrLadder = new SnakeLadder(75, 28);
                 board[81].snakeOrLadder = new SnakeLadder(81, 98);
                 board[83].snakeOrLadder = new SnakeLadder(83, 45);
@@ -176,119 +134,32 @@ $(document).ready(function () {
         }
     }
 
-    var players = [];
-    function setupPlayers() {
-        nmbrOfPlayers = $("input[name='nmbrOfPlayers']:checked").val();
+    setupPlayers() {
+        this.nmbrOfPlayers = $("input[name='nmbrOfPlayers']:checked").val();
 
         var boardWidth = $("#theBoard").width();
         $(".coin").css({ display: "", top: boardWidth - boardWidth / 10 });
 
         var i = 0;
         var color = "Red";
-        while (i < nmbrOfPlayers) {
+        while (i < this.nmbrOfPlayers) {
             if (i == 0) color = "Red";
             if (i == 1) color = "Green";
             if (i == 2) color = "Blue";
             if (i == 3) color = "Yellow";
-            players.push(new Player(color, 0, 540, -50, false));
+            this.players.push(new Player(color, 0, 540, -50, false));
             i += 1;
         }
-        if (nmbrOfPlayers < 4) $("#YellowCoin").remove();
-        if (nmbrOfPlayers < 3) $("#BlueCoin").remove();
+        if (this.nmbrOfPlayers < 4) $("#YellowCoin").remove();
+        if (this.nmbrOfPlayers < 3) $("#BlueCoin").remove();
 
-        $("#instruct").css("color", players[currPlayer].color);
-        $("#instruct").text(players[currPlayer].color + " Play");
+        $("#instruct").css("color", this.players[this.currPlayer].color);
+        $("#instruct").text(this.players[this.currPlayer].color + " Play");
     }
 
-    $(".boardSelector").click(function () {
-        $(".boardSelected").removeClass("boardSelected");
-        $(this).addClass("boardSelected");
-        boardImgNmbr = parseInt(this.id.split("_")[1]);
-        boardImgPath = "images/board" + boardImgNmbr + ".jpg";
-        $(".board").attr("src", boardImgPath);
-    });
+    checkSnakeOrLadder(currCoin) {
+        var { board, currPlayer, players } = game;
 
-    $("#start").click(function () {
-        $(".board").css({ display: "" });
-        setupBoard();
-        setupPlayers();
-        $("#startcontrols").css("display", "none");
-        $("#gameControls").css("display", "");
-        $("#endControls").css("display", "none");
-        gameStarted = true;
-    });
-
-    const startNewGame = function () {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You may lose your progress!!!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, I confirm!",
-        }).then(result => {
-            if (result.isConfirmed) {
-                document.location.reload(true);
-            }
-        });
-    };
-
-    $("#newGame1").click(startNewGame);
-    $("#newGame2").click(startNewGame);
-
-    function rollDice() {
-        isAnimationOn = true;
-        var cnt = 0;
-        var diceRollAnim = setInterval(function () {
-            if (cnt == 5) {
-                clearInterval(diceRollAnim);
-                play();
-                return;
-            }
-            cnt += 1;
-            i = cnt % 3;
-            diceVal = Math.floor(Math.random() * 6) + 1;
-            $(".dice").attr("src", "images/diceRoll" + i.toString() + ".png");
-        }, 200);
-    }
-
-    function moveCoin(currCoin) {
-        if (players[currPlayer].position + diceVal > 100) {
-            changePlayer();
-            isAnimationOn = false;
-            return;
-        }
-
-        isAnimationOn = true;
-        cnt = 0;
-
-        var coinMoveAnim = setInterval(function () {
-            if (cnt == diceVal) {
-                clearInterval(coinMoveAnim);
-                checkSnakeOrLadder(currCoin);
-                checkSnakeOrLadder(currCoin);
-                if (diceVal != 6) changePlayer();
-                isAnimationOn = false;
-                return;
-            }
-            cnt += 1;
-            players[currPlayer].position = players[currPlayer].position + 1;
-
-            players[currPlayer].topVal = board[players[currPlayer].position].topVal;
-            players[currPlayer].leftVal = board[players[currPlayer].position].leftVal;
-            currCoin.animate(
-                {
-                    "z-index": (players[currPlayer].topVal + 50).toString(),
-                    top: players[currPlayer].topVal.toString() + "px",
-                    left: players[currPlayer].leftVal.toString() + "px",
-                },
-                300,
-            );
-        }, 300);
-    }
-
-    function checkSnakeOrLadder(currCoin) {
         if (board[players[currPlayer].position].snakeOrLadder == null) return;
 
         var snakeOrLadder = board[players[currPlayer].position].snakeOrLadder;
@@ -302,11 +173,13 @@ $(document).ready(function () {
         );
     }
 
-    function changePlayer() {
-        if (players[currPlayer].position == 100) {
+    changePlayer() {
+        var { players, nmbrOfPlayers, gameOver } = game;
+
+        if (players[game.currPlayer].position == 100) {
             gameOver = true;
-            $("#endInstruct").css("color", players[currPlayer].color);
-            $("#endInstruct").text(players[currPlayer].color + " WINS !!!");
+            $("#endInstruct").css("color", players[game.currPlayer].color);
+            $("#endInstruct").text(players[game.currPlayer].color + " WINS !!!");
 
             $("#startcontrols").css("display", "none");
             $("#gameControls").css("display", "none");
@@ -315,14 +188,16 @@ $(document).ready(function () {
             return;
         }
 
-        currPlayer += 1;
-        if (currPlayer == nmbrOfPlayers) currPlayer = 0;
+        game.currPlayer += 1;
+        if (game.currPlayer == nmbrOfPlayers) game.currPlayer = 0;
 
-        $("#instruct").css("color", players[currPlayer].color);
-        $("#instruct").text(players[currPlayer].color + " Play");
+        $("#instruct").css("color", players[game.currPlayer].color);
+        $("#instruct").text(players[game.currPlayer].color + " Play");
     }
 
-    function play() {
+    play() {
+        var { currPlayer, players, diceVal } = game;
+
         $(".dice").attr("src", "images/dice" + diceVal.toString() + ".png");
         $("#instruct").css("color", players[currPlayer].color);
 
@@ -335,24 +210,15 @@ $(document).ready(function () {
             if (diceVal == 6) {
                 $("#instruct").text(players[currPlayer].color + " Played : " + diceVal);
                 players[currPlayer].started = true;
-                start3turns = 0;
+                game.start3turns = 0;
             } else {
-                start3turns += 1;
-                if (start3turns == 3) {
-                    start3turns = 0;
-                    changePlayer();
+                game.start3turns += 1;
+                if (game.start3turns == 3) {
+                    game.start3turns = 0;
+                    this.changePlayer();
                 }
             }
-            isAnimationOn = false;
+            game.isAnimationOn = false;
         }
-        return;
     }
-
-    $(".dice").click(function () {
-        if (!gameStarted) return;
-        if (gameOver) return;
-        if (isAnimationOn) return;
-
-        rollDice();
-    });
-});
+}
