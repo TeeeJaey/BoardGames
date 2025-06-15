@@ -21,5 +21,6 @@ class Player {
         this.topVal = topVal;
         this.leftVal = leftVal;
         this.started = started;
+        this.finalRank = -1;
     }
 }

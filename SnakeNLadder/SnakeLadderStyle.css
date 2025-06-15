@@ -59,7 +59,7 @@ body {
     font-weight: bold;
 }
 #instruct,
-#endInstruct {
+.endInstruct {
     background-color: #fff5d7;
     padding: 30px;
     font-size: 36px;
@@ -159,10 +159,13 @@ body.dark .btn-default:hover {
     border-color: white;
 }
 body.dark .instruct,
-body.dark #instruct,
 body.dark .board-chooser {
     color: white;
-    background: #22272e;
+    background: #444c56;
+}
+body.dark #instruct,
+body.dark .endInstruct {
+    background: #a4a198;
 }
 /* DARK THEME -- END */
 
@@ -186,11 +189,14 @@ body.dark .board-chooser {
         font-weight: bold;
     }
     #instruct,
-    #endInstruct {
+    .endInstruct {
         background-color: #fff5d7;
         padding: 10px;
         font-size: 22px;
         font-weight: bold;
+    }
+    .endInstruct {
+        display: none;
     }
 
     #theDice,

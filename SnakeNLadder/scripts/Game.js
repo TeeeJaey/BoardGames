@@ -10,6 +10,7 @@ class Game {
     nmbrOfPlayers = 2;
     currPlayer = 0;
     diceVal = 0;
+    finalRanking = [];
 
     setBoardImage(boardImgNmbr = 0) {
         this.boardImgNmbr = boardImgNmbr;
@@ -171,25 +172,44 @@ class Game {
             { top: players[currPlayer].topVal.toString() + "px", left: players[currPlayer].leftVal.toString() + "px" },
             700,
         );
+
+        return this.checkSnakeOrLadder(currCoin);
+    }
+
+    checkPlayerWon() {
+        var { players, currPlayer } = game;
+
+        if (players[currPlayer].position == 100) {
+            game.finalRanking.push(currPlayer);
+            players[currPlayer].finalRank = game.finalRanking.length;
+            $(".endInstruct").css("display", "block");
+
+            const div = document.createElement("div");
+            div.textContent = players[currPlayer].finalRank + " - " + players[currPlayer].color;
+            div.style.color = players[currPlayer].color;
+            $(".endInstruct").append(div);
+            return true;
+        }
+
+        return false;
     }
 
     changePlayer() {
-        var { players, nmbrOfPlayers, gameOver } = game;
-
-        if (players[game.currPlayer].position == 100) {
-            gameOver = true;
-            $("#endInstruct").css("color", players[game.currPlayer].color);
-            $("#endInstruct").text(players[game.currPlayer].color + " WINS !!!");
-
-            $("#startcontrols").css("display", "none");
-            $("#gameControls").css("display", "none");
-            $("#endControls").css("display", "");
-
-            return;
-        }
+        var { players, nmbrOfPlayers } = game;
 
         game.currPlayer += 1;
         if (game.currPlayer == nmbrOfPlayers) game.currPlayer = 0;
+
+        if (game.finalRanking.length == players.length) {
+            $("#instruct").text("Game Over!");
+            $("#instruct").css("color", "black");
+            game.gameOver = true;
+            return;
+        }
+
+        if (players[game.currPlayer].finalRank > -1) {
+            this.changePlayer();
+        }
 
         $("#instruct").css("color", players[game.currPlayer].color);
         $("#instruct").text(players[game.currPlayer].color + " Play");
@@ -202,7 +222,6 @@ class Game {
         $("#instruct").css("color", players[currPlayer].color);
 
         var currCoin = $("#" + players[currPlayer].color + "Coin");
-
         if (players[currPlayer].started) {
             $("#instruct").text(players[currPlayer].color + " Played : " + diceVal);
             moveCoin(currCoin);

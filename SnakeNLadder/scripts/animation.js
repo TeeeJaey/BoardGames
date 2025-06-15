@@ -30,8 +30,9 @@ function moveCoin(currCoin) {
         if (cnt == diceVal) {
             clearInterval(coinMoveAnim);
             game.checkSnakeOrLadder(currCoin);
-            game.checkSnakeOrLadder(currCoin);
-            if (diceVal != 6) game.changePlayer();
+            var playerWon = game.checkPlayerWon();
+
+            if (playerWon || diceVal != 6) game.changePlayer();
 
             game.isAnimationOn = false;
             return;
