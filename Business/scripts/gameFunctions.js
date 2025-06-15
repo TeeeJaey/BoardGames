@@ -366,15 +366,6 @@ $(document).ready(function () {
     setTheme();
     darkTheme = isDarkTheme();
 
-    $(document.body).on("click", "#changeTheme", () => {
-        if (window.localStorage.boardgame_theme && window.localStorage.boardgame_theme == "dark") {
-            window.localStorage.boardgame_theme = "light";
-        } else window.localStorage.boardgame_theme = "dark";
-
-        setTheme();
-        darkTheme = isDarkTheme();
-    });
-
     //#region "Initial displays"
 
     $("#menu").css("display", "none");

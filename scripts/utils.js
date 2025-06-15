@@ -14,3 +14,15 @@ function isDarkTheme() {
     }
     return false;
 }
+
+var darkTheme = false;
+$(document).ready(function () {
+    $(document.body).on("click", "#changeTheme", () => {
+        if (window.localStorage.boardgame_theme && window.localStorage.boardgame_theme == "dark") {
+            window.localStorage.boardgame_theme = "light";
+        } else window.localStorage.boardgame_theme = "dark";
+
+        setTheme();
+        darkTheme = isDarkTheme();
+    });
+});

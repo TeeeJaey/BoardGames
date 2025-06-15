@@ -9,6 +9,7 @@ class ChanceChest {
     }
 
     processChest() {
+        var currCoin = $("#" + players[currPlayer].color + "Coin");
         switch (this.number) {
             case 2: {
                 var i = 0;
@@ -64,6 +65,7 @@ class ChanceChest {
     }
 
     processChance() {
+        var currCoin = $("#" + players[currPlayer].color + "Coin");
         switch (this.number) {
             case 6: {
                 var log = new Log(

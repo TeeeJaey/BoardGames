@@ -88,7 +88,6 @@ body {
 .dropdown-content {
     display: none;
     position: absolute;
-    margin-left: 50px;
     background-color: #f9c5bd;
     width: 360px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -158,6 +157,11 @@ body.dark .btn-default:hover {
     background: #444c56;
     border-color: white;
 }
+body.dark .btnDiff.active {
+    color: black;
+    background-color: rgba(255, 245, 215, 0.8);
+    border: 3px solid Green;
+}
 body.dark .instruct,
 body.dark .board-chooser {
     color: white;
@@ -167,6 +171,10 @@ body.dark #instruct,
 body.dark .endInstruct {
     background: #a4a198;
 }
+.endInstruct {
+    display: none;
+}
+
 /* DARK THEME -- END */
 
 @media (max-width: 1220px) {
@@ -194,9 +202,6 @@ body.dark .endInstruct {
         padding: 10px;
         font-size: 22px;
         font-weight: bold;
-    }
-    .endInstruct {
-        display: none;
     }
 
     #theDice,
@@ -235,8 +240,5 @@ body.dark .endInstruct {
     .game-btns {
         font-size: 15px;
         width: 48%;
-    }
-    .dropdown-content {
-        margin-left: -20px;
     }
 }

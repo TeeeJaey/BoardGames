@@ -1,13 +1,6 @@
 $(document).ready(function () {
     importNavbar("Connect4", "Connect4");
     setTheme();
-    $(document.body).on("click", "#changeTheme", () => {
-        if (window.localStorage.boardgame_theme && window.localStorage.boardgame_theme == "dark") {
-            window.localStorage.boardgame_theme = "light";
-        } else window.localStorage.boardgame_theme = "dark";
-
-        setTheme();
-    });
 
     var player = 1;
     var playerColour = "yellow";

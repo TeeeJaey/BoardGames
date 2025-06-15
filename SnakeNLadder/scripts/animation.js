@@ -20,6 +20,7 @@ function moveCoin(currCoin) {
     if (players[currPlayer].position + diceVal > 100) {
         game.changePlayer();
         game.isAnimationOn = false;
+        game.autoSave();
         return;
     }
 
@@ -35,6 +36,7 @@ function moveCoin(currCoin) {
             if (playerWon || diceVal != 6) game.changePlayer();
 
             game.isAnimationOn = false;
+            game.autoSave();
             return;
         }
         cnt += 1;

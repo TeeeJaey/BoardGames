@@ -3,14 +3,6 @@ var game = new Game();
 $(document).ready(function () {
     importNavbar("SnakeLadder", "Snake & Ladder");
     setTheme();
-    $(document.body).on("click", "#changeTheme", () => {
-        if (window.localStorage.boardgame_theme && window.localStorage.boardgame_theme == "dark") {
-            window.localStorage.boardgame_theme = "light";
-        } else window.localStorage.boardgame_theme = "dark";
-
-        setTheme();
-    });
-
     game.setBoardImage(0);
 
     $("#startcontrols").css("display", "");
@@ -18,6 +10,8 @@ $(document).ready(function () {
     $("#endControls").css("display", "none");
     $(".coin").css({ display: "none" });
     $(".board").css({ display: "none" });
+
+    game.autoLoad();
 
     $(".boardSelector").click(function () {
         $(".boardSelected").removeClass("boardSelected");
@@ -46,6 +40,7 @@ $(document).ready(function () {
             confirmButtonText: "Yes, I confirm!",
         }).then(result => {
             if (result.isConfirmed) {
+                delete localStorage.boardgame_snakeladder;
                 document.location.reload(true);
             }
         });

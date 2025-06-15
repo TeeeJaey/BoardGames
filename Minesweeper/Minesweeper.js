@@ -1,13 +1,6 @@
 $(document).ready(function () {
     importNavbar("Minesweeper", "Minesweeper");
     setTheme();
-    $(document.body).on("click", "#changeTheme", () => {
-        if (window.localStorage.boardgame_theme && window.localStorage.boardgame_theme == "dark") {
-            window.localStorage.boardgame_theme = "light";
-        } else window.localStorage.boardgame_theme = "dark";
-
-        setTheme();
-    });
 
     var gameOver = false;
     var board = new Array(10);

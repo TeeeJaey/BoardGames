@@ -238,6 +238,64 @@ class Game {
                 }
             }
             game.isAnimationOn = false;
+            game.autoSave();
         }
+    }
+
+    autoSave() {
+        if (!this.gameStarted) return;
+        if (this.gameOver) return;
+
+        localStorage.boardgame_snakeladder = JSON.stringify(game);
+    }
+
+    autoLoad() {
+        var gameData = localStorage.boardgame_snakeladder;
+        if (!gameData || gameData == null) return;
+
+        var loadedGame = JSON.parse(gameData);
+        this.boardImgNmbr = loadedGame.boardImgNmbr;
+        this.setupBoard();
+
+        this.gameStarted = loadedGame.gameStarted;
+        this.start3turns = loadedGame.start3turns;
+        this.isAnimationOn = false;
+        this.gameOver = loadedGame.gameOver;
+
+        this.players = loadedGame.players;
+        this.nmbrOfPlayers = loadedGame.nmbrOfPlayers;
+        this.currPlayer = loadedGame.currPlayer;
+        this.diceVal = loadedGame.diceVal;
+        this.finalRanking = loadedGame.finalRanking;
+
+        if (this.nmbrOfPlayers < 4) $("#YellowCoin").remove();
+        if (this.nmbrOfPlayers < 3) $("#BlueCoin").remove();
+
+        this.setBoardImage(this.boardImgNmbr);
+        $("#startcontrols").css("display", "none");
+        $("#gameControls").css("display", "");
+        $("#endControls").css("display", "none");
+        $("#instruct").css("color", this.players[this.currPlayer].color);
+        $("#instruct").text(this.players[this.currPlayer].color + " Play");
+
+        $(".board").css({ display: "" });
+
+        var boardWidth = $("#theBoard").width();
+        $(".coin").css({ display: "", top: boardWidth - boardWidth / 10 });
+
+        this.players.forEach(player => {
+            player.topVal = this.board[player.position].topVal;
+            player.leftVal = this.board[player.position].leftVal;
+
+            var currCoin = $("#" + player.color + "Coin");
+            currCoin.animate(
+                {
+                    "z-index": (player.topVal + 50).toString(),
+                    top: player.topVal.toString() + "px",
+                    left: player.leftVal.toString() + "px",
+                },
+                300,
+            );
+        });
     }
 }

@@ -30,13 +30,6 @@ function rollDice() {
 $(document).ready(function () {
     importNavbar("Ludo", "Ludo");
     setTheme();
-    $(document.body).on("click", "#changeTheme", () => {
-        if (window.localStorage.boardgame_theme && window.localStorage.boardgame_theme == "dark") {
-            window.localStorage.boardgame_theme = "light";
-        } else window.localStorage.boardgame_theme = "dark";
-
-        setTheme();
-    });
 
     mainContentVue = new Vue({
         el: "#mainContent",
