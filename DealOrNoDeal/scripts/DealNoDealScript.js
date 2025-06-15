@@ -1,16 +1,18 @@
 var mainContentVue = new Vue(); // to put data in HTML
 
 function getAmtString(amt) {
-    const rupeeSymbol = " ";
     var amtString = amt.toString();
 
-    if (amtString.length < 4) return rupeeSymbol + amtString;
+    if (amtString.length < 4) return amtString;
     else {
         if (amtString.length < 7)
-            return rupeeSymbol + amtString.substring(0, amtString.length - 3) + "," + amtString.substring(amtString.length - 3, amtString.length);
+            return (
+                amtString.substring(0, amtString.length - 3) +
+                "," +
+                amtString.substring(amtString.length - 3, amtString.length)
+            );
         else
             return (
-                rupeeSymbol +
                 amtString.substring(0, amtString.length - 6) +
                 "," +
                 amtString.substring(amtString.length - 6, amtString.length - 3) +
@@ -22,15 +24,6 @@ function getAmtString(amt) {
 
 var game = new Game();
 var okDisabled = false;
-
-function setTheme() {
-    const theme = window.localStorage.getItem("boardgame_theme");
-    if (theme && theme == "dark") {
-        $("body").addClass("dark");
-    } else {
-        $("body").removeClass("dark");
-    }
-}
 
 $(document).ready(function () {
     importNavbar("DealNoDeal", "Deal Or NoDeal");
@@ -132,7 +125,7 @@ $(document).ready(function () {
 
         $("#FinalCaseOpenModal").modal({ backdrop: "static", keyboard: false });
 
-        await window.setTimeout(() => {
+        window.setTimeout(() => {
             $(".caseOutside").slideUp("slow");
         }, 800);
     });

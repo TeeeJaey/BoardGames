@@ -82,15 +82,6 @@ function checkArrowKey(btn) {
     mainContentVue.game = game;
 }
 
-function setTheme() {
-    const theme = window.localStorage.getItem("boardgame_theme");
-    if (theme && theme == "dark") {
-        $("body").addClass("dark");
-    } else {
-        $("body").removeClass("dark");
-    }
-}
-
 $(document).ready(function () {
     importNavbar("sudoku", "Sudoku");
     setTheme();

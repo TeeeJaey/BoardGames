@@ -11,15 +11,6 @@ function setToaster(msg) {
     setTimeout(() => (toaster.style.opacity = 0), 2000);
 }
 
-function setTheme() {
-    const theme = window.localStorage.getItem("boardgame_theme");
-    if (theme && theme == "dark") {
-        $("body").addClass("dark");
-    } else {
-        $("body").removeClass("dark");
-    }
-}
-
 const startNewGame = function () {
     Swal.fire({
         title: "Are you sure?",

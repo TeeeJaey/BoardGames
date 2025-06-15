@@ -1,37 +1,27 @@
-
-
-class Moneybar
-{
-    constructor(i, amt)
-    {
+class Moneybar {
+    constructor(i, amt) {
         this.index = i;
         this.lost = false;
         this.amount = amt;
         this.amtString = getAmtString(amt);
-        this.id = "money:"+i;
+        this.id = "money:" + i;
         return;
     }
-
-
 }
 
-class Briefcase
-{
-    constructor(i,moneybar)
-    {
+class Briefcase {
+    constructor(i, moneybar) {
         this.caseNumber = i;
         this.moneybar = moneybar;
         this.opened = false;
-        this.id = "case:"+i;
-        this.playerCase=false;
+        this.id = "case:" + i;
+        this.playerCase = false;
         return;
     }
 
-    async openCase()
-    {
-        if(game.chooseCase[game.chooseCaseIndex] == 0) return;
-        await window.setTimeout( () =>
-        {
+    async openCase() {
+        if (game.chooseCase[game.chooseCaseIndex] == 0) return;
+        window.setTimeout(() => {
             $(".caseOutside").slideUp();
             okDisabled = false;
             this.opened = true;

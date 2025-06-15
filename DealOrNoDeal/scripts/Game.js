@@ -1,29 +1,25 @@
-
-class Game
-{
-    constructor()
-    {
+class Game {
+    constructor() {
         this.moneybars = this.getMoneybars();
         this.briefcases = this.getBriefcases();
 
         this.playerCase = 0;
 
-        this.chooseCase = [6,5,4,3,2,1,1]
+        this.chooseCase = [6, 5, 4, 3, 2, 1, 1];
         this.chooseCaseIndex = -1;
 
         this.previousBankOffers = [];
-        this.currentBankOffer = {amt:0,amtString:'0'};
+        this.currentBankOffer = { amt: 0, amtString: "0" };
         this.currSelCase = 0;
 
         this.finalCase = this.briefcases[0];
-        this.finalChoice = [this.briefcases[0],this.briefcases[1]];
-        this.finalWinAmount = {amt:0,amtString:'0'};
+        this.finalChoice = [this.briefcases[0], this.briefcases[1]];
+        this.finalWinAmount = { amt: 0, amtString: "0" };
         this.gameOver = false;
         return;
     }
 
-    getMoneybars()
-    {
+    getMoneybars() {
         var moneybars = [];
 
         moneybars.push(new Moneybar(0, 1));
@@ -57,19 +53,15 @@ class Game
         return moneybars;
     }
 
-    getBriefcases()
-    {
+    getBriefcases() {
         var briefcases = [];
 
-
         var i = 1;
-        while(i <= 24)
-        {
-            var randomMoneyBarIndex = Math.floor( Math.random() * 24) 
-            
-            if(!briefcases.some(x => x.moneybar == this.moneybars[randomMoneyBarIndex]))
-            {
-                briefcases.push( new Briefcase(i,this.moneybars[randomMoneyBarIndex]) );
+        while (i <= 24) {
+            var randomMoneyBarIndex = Math.floor(Math.random() * 24);
+
+            if (!briefcases.some(x => x.moneybar == this.moneybars[randomMoneyBarIndex])) {
+                briefcases.push(new Briefcase(i, this.moneybars[randomMoneyBarIndex]));
                 i += 1;
             }
         }
@@ -77,45 +69,39 @@ class Game
         return briefcases;
     }
 
-    getSelectedCase(divID)
-    {
-        this.currSelCase = parseInt(divID.split(':')[1] - 1);
+    getSelectedCase(divID) {
+        this.currSelCase = parseInt(divID.split(":")[1] - 1);
         return this.briefcases[this.currSelCase];
     }
 
-    showBankOffer()
-    {
+    showBankOffer() {
         var moneyLeft = 0;
         var moneyCount = 0;
-        
-        for(var i =0; i < this.moneybars.length; i+=1)
-        {
-            if(!this.moneybars[i].lost)
-            {
+
+        for (var i = 0; i < this.moneybars.length; i += 1) {
+            if (!this.moneybars[i].lost) {
                 moneyLeft += this.moneybars[i].amount;
                 moneyCount += 1;
             }
         }
         var offerAmt = Math.floor(moneyLeft / moneyCount);
 
-        this.currentBankOffer = {amt:offerAmt,amtString: getAmtString(offerAmt)};
-        this.previousBankOffers.push( this.currentBankOffer );
+        this.currentBankOffer = { amt: offerAmt, amtString: getAmtString(offerAmt) };
+        this.previousBankOffers.push(this.currentBankOffer);
 
-        $("#BankOfferModal").modal({backdrop: 'static', keyboard: false});
+        $("#BankOfferModal").modal({ backdrop: "static", keyboard: false });
         return;
     }
 
-    showFinalChoice()
-    {
+    showFinalChoice() {
         this.finalChoice = [];
         this.finalChoice.push(this.playerCase);
-        
+
         var finalCase = this.briefcases.find(x => !x.opened & !x.playerCase);
         this.finalChoice.push(finalCase);
-         
-        $("#FinalChoiceModal").modal({backdrop: 'static', keyboard: false}); 
-        
+
+        $("#FinalChoiceModal").modal({ backdrop: "static", keyboard: false });
+
         return;
     }
-
 }

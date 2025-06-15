@@ -1,15 +1,6 @@
 var mainContentVue = new Vue(); // to put data in HTML x
 var game = new Game();
 
-function setTheme() {
-    const theme = window.localStorage.getItem("boardgame_theme");
-    if (theme && theme == "dark") {
-        $("body").addClass("dark");
-    } else {
-        $("body").removeClass("dark");
-    }
-}
-
 $(document).ready(function () {
     importNavbar("snake", "Snake");
     setTheme();

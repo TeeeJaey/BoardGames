@@ -204,15 +204,6 @@ function getBoardCellByID(cellID) {
     return game.board[i][j];
 }
 
-function setTheme() {
-    const theme = window.localStorage.getItem("boardgame_theme");
-    if (theme && theme == "dark") {
-        $("body").addClass("dark");
-    } else {
-        $("body").removeClass("dark");
-    }
-}
-
 const startNewGame = function () {
     Swal.fire({
         title: "Are you sure?",

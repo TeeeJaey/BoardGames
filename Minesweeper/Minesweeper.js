@@ -1,12 +1,3 @@
-function setTheme() {
-    const theme = window.localStorage.getItem("boardgame_theme");
-    if (theme && theme == "dark") {
-        $("body").addClass("dark");
-    } else {
-        $("body").removeClass("dark");
-    }
-}
-
 $(document).ready(function () {
     importNavbar("Minesweeper", "Minesweeper");
     setTheme();

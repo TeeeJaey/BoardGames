@@ -341,17 +341,6 @@ function endGame() {
     return;
 }
 
-function setTheme() {
-    const theme = window.localStorage.getItem("boardgame_theme");
-    if (theme && theme == "dark") {
-        $("body").addClass("dark");
-        darkTheme = true;
-    } else {
-        $("body").removeClass("dark");
-        darkTheme = false;
-    }
-}
-
 function highlightDoneBtn() {
     $("#btnDone")[0].style.border = "2px solid Yellow";
     setTimeout(() => {
@@ -371,15 +360,19 @@ function highlightDoneBtn() {
     }, 200);
 }
 
+var darkTheme = false;
 $(document).ready(function () {
     importNavbar("Business", "Business");
     setTheme();
+    darkTheme = isDarkTheme();
+
     $(document.body).on("click", "#changeTheme", () => {
         if (window.localStorage.boardgame_theme && window.localStorage.boardgame_theme == "dark") {
             window.localStorage.boardgame_theme = "light";
         } else window.localStorage.boardgame_theme = "dark";
 
         setTheme();
+        darkTheme = isDarkTheme();
     });
 
     //#region "Initial displays"

@@ -1,14 +1,5 @@
 var game = new Game();
 
-function setTheme() {
-    const theme = window.localStorage.getItem("boardgame_theme");
-    if (theme && theme == "dark") {
-        $("body").addClass("dark");
-    } else {
-        $("body").removeClass("dark");
-    }
-}
-
 $(document).ready(function () {
     importNavbar("2048", "2048");
     setTheme();

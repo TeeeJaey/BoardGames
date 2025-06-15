@@ -3,15 +3,6 @@ var mainContentVue = new Vue(); // to put data in HTML
 var isAnimationOn = false;
 var mobileUI = $(window).width() <= 768;
 
-function setTheme() {
-    const theme = window.localStorage.getItem("boardgame_theme");
-    if (theme && theme == "dark") {
-        $("body").addClass("dark");
-    } else {
-        $("body").removeClass("dark");
-    }
-}
-
 function rollDice() {
     isAnimationOn = true;
     var cnt = 0;
