@@ -90,7 +90,7 @@ $(document).ready(function()
 		tray[i] = new Array(13); 
 		
 	var board = new Array();
-	for (var i = 0; i <= 7; i++) 
+	for (var i = 0; i < 7; i++) 
 	{ 
 		board[i] = new Array(); 
 		for (var j = 0; j <= i; j++) 
@@ -99,7 +99,7 @@ $(document).ready(function()
 			if(i==j)
 			{
 				card.position="board:"+(i).toString()+":"+(j).toString();
-				card.revealed - true;
+				card.revealed = true;
 				var image = makeCardImage("images/"+card.imageSrc);
 				image.css("top", (j * 25).toString()+"px");
 				$("#board"+i).append(image);
@@ -153,8 +153,8 @@ $(document).ready(function()
 			var image = makeBackImage()
 			$('#deckCard').empty();
 			$("#deckBack").append(image);
-			deckCurr = 0;
 			deck[deckCurr-1].revealed = false;
+			deckCurr = 0;
 		}
 		else
 		{

@@ -91,7 +91,6 @@ class Game {
             while (i < loadedGame.logs.length) {
                 var log = new Log();
                 log.loadGame_Log(loadedGame.logs[i]);
-                logs.push(log);
                 i += 1;
             }
 

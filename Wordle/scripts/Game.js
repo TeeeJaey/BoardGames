@@ -108,11 +108,20 @@ class Game {
     }
 
     colorCurrentRow() {
+        // count letters of the correct word not already matched in place
+        const remaining = {};
+        for (let i = 0; i < 5; i += 1) {
+            if (this.currentWord[i] != this.correctWord[i]) {
+                remaining[this.correctWord[i]] = (remaining[this.correctWord[i]] || 0) + 1;
+            }
+        }
+
         for (let i = 0; i < 5; i += 1) {
             let letter = this.currentWord[i];
             if (letter == this.correctWord[i]) {
                 this.board[this.attempt][i].setCell(letter, ColorConstant.yes);
-            } else if (this.correctWord.includes(letter)) {
+            } else if (remaining[letter] > 0) {
+                remaining[letter] -= 1;
                 this.board[this.attempt][i].setCell(letter, ColorConstant.maybe);
             } else {
                 this.board[this.attempt][i].setCell(letter, ColorConstant.no);

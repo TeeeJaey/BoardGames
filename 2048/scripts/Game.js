@@ -10,59 +10,52 @@ class Game {
     }
 
     setupInput() {
-        const options = { once: true };
-        window.addEventListener("keydown", this.handleInput, options);
+        window.addEventListener("keydown", this.handleInput);
 
-        $("#btnUp")[0].addEventListener("click", () => this.handleInput({ key: "ArrowUp" }), options);
-        $("#btnLeft")[0].addEventListener("click", () => this.handleInput({ key: "ArrowLeft" }), options);
-        $("#btnRight")[0].addEventListener("click", () => this.handleInput({ key: "ArrowRight" }), options);
-        $("#btnDown")[0].addEventListener("click", () => this.handleInput({ key: "ArrowDown" }), options);
+        $("#btnUp")[0].addEventListener("click", () => this.handleInput({ key: "ArrowUp" }));
+        $("#btnLeft")[0].addEventListener("click", () => this.handleInput({ key: "ArrowLeft" }));
+        $("#btnRight")[0].addEventListener("click", () => this.handleInput({ key: "ArrowRight" }));
+        $("#btnDown")[0].addEventListener("click", () => this.handleInput({ key: "ArrowDown" }));
     }
 
     async handleInput(e) {
+        // ignore input while a move is animating or after game over
+        if (game.inputLocked) return;
+
         switch (e.key) {
             case "ArrowUp":
             case "w":
-                if (!game.canMoveUp()) {
-                    game.setupInput();
-                    return;
-                }
+                if (!game.canMoveUp()) return;
+                game.inputLocked = true;
                 game.moves++;
                 await game.moveUp();
                 break;
 
             case "ArrowDown":
             case "s":
-                if (!game.canMoveDown()) {
-                    game.setupInput();
-                    return;
-                }
+                if (!game.canMoveDown()) return;
+                game.inputLocked = true;
                 game.moves++;
                 await game.moveDown();
                 break;
 
             case "ArrowLeft":
             case "a":
-                if (!game.canMoveLeft()) {
-                    game.setupInput();
-                    return;
-                }
+                if (!game.canMoveLeft()) return;
+                game.inputLocked = true;
                 game.moves++;
                 await game.moveLeft();
                 break;
 
             case "ArrowRight":
             case "d":
-                if (!game.canMoveRight()) {
-                    game.setupInput();
-                    return;
-                }
+                if (!game.canMoveRight()) return;
+                game.inputLocked = true;
                 game.moves++;
                 await game.moveRight();
                 break;
 
             default:
-                game.setupInput();
                 return;
         }
 
@@ -77,7 +70,7 @@ class Game {
             return;
         }
 
-        game.setupInput();
+        game.inputLocked = false;
     }
 
     moveUp() {

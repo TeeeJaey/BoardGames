@@ -41,12 +41,14 @@ class Player {
         return;
     }
 
-    bankruptPlayerUX(color, rank) {
+    bankruptPlayerUX(color, rank, isLoading) {
         $("#" + color + "BankruptData").css("display", "block");
         $("#" + color + "BankruptOverlay").addClass("bankruptOverlay");
         $("#" + color + "BankruptRank")[0].innerHTML = "Rank : " + rank;
         $("#" + color + "Coin").remove();
         $("." + color + "TradeSelector").remove();
+
+        if (isLoading) return;
 
         if (rank == 2) {
             endGame();
@@ -58,6 +60,8 @@ class Player {
 
     bankruptPlayer(number, rank) {
         var color = this.color;
+        this.bankrupt = true;
+        this.finalRank = rank;
 
         var i = 0;
         while (i < 40) {
@@ -88,7 +92,7 @@ class Player {
         this.finalRank = loadedPlayerObj.finalRank;
 
         if (this.bankrupt) {
-            this.bankruptPlayerUX(this.color, this.finalRank);
+            this.bankruptPlayerUX(this.color, this.finalRank, true);
         }
 
         return;

@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta charset="utf-8" />
         <title>Board Games</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
@@ -11,6 +12,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
         <script type="text/javascript" src="./scripts/BoardGames.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
         <link type="text/css" rel="stylesheet" href="./index.css" />
     </head>
 
@@ -31,24 +33,76 @@
             </div>
         </div>
 
-        <img class="backgroundImage" src="images/boardGames.jpg" />
+        <div class="backgroundImage"></div>
 
-        <div class="searchLinks">
+        <main class="home">
+            <h1 class="homeTitle">Pick a game</h1>
+            <p class="homeSub">Board, card and arcade classics. Free in your browser, no sign-up.</p>
+            <p id="noResults" class="noResults" hidden>No games match your search.</p>
+
             <div id="gameList" class="game-list">
-                <a id="Minesweeper" href="Minesweeper/Minesweeper.html" class="searchLink"> Minesweeper </a>
-                <a id="SnakeLadder" href="SnakeNLadder/SnakeLadder.html" class="searchLink"> Snake & Ladder </a>
-                <a id="Connect4" href="Connect4/Connect4.html" class="searchLink"> Connect 4 </a>
-                <a id="Business" href="Business/Business.html" class="searchLink"> Business </a>
-                <a id="Sudoku" href="Sudoku/Sudoku.html" class="searchLink"> Sudoku </a>
-                <a id="DotsBoxes" href="DotsNBoxes/DotsNBoxes.html" class="searchLink"> Dots & Boxes </a>
-                <a id="DealNoDeal" href="DealOrNoDeal/DealNoDeal.html" class="searchLink"> Deal or No Deal </a>
-                <a id="Ludo" href="Ludo/Ludo.html" class="searchLink"> Ludo </a>
-                <a id="Tetris" href="Tetris/Tetris.html" class="searchLink"> Tetris </a>
-                <a id="Snake" href="Snake/Snake.html" class="searchLink"> Snake </a>
-                <a id="Wordle" href="Wordle/Wordle.html" class="searchLink"> Wordle </a>
-                <a id="2048" href="2048/2048.html" class="searchLink"> 2048 </a>
+                <a id="Minesweeper" href="Minesweeper/Minesweeper.html" class="searchLink">
+                    <span class="gameIcon">💣</span>
+                    <span class="gameName">Minesweeper</span>
+                    <span class="gameTag">Puzzle · 1 player</span>
+                </a>
+                <a id="SnakeLadder" href="SnakeNLadder/SnakeLadder.html" class="searchLink">
+                    <span class="gameIcon">🪜</span>
+                    <span class="gameName">Snake &amp; Ladder</span>
+                    <span class="gameTag">Board · 2–4 players</span>
+                </a>
+                <a id="Connect4" href="Connect4/Connect4.html" class="searchLink">
+                    <span class="gameIcon">🔴</span>
+                    <span class="gameName">Connect 4</span>
+                    <span class="gameTag">Strategy · 2 players</span>
+                </a>
+                <a id="Business" href="Business/Business.html" class="searchLink">
+                    <span class="gameIcon">🏦</span>
+                    <span class="gameName">Business</span>
+                    <span class="gameTag">Board · 2–4 players</span>
+                </a>
+                <a id="Sudoku" href="Sudoku/Sudoku.html" class="searchLink">
+                    <span class="gameIcon">🔢</span>
+                    <span class="gameName">Sudoku</span>
+                    <span class="gameTag">Puzzle · 1 player</span>
+                </a>
+                <a id="DotsBoxes" href="DotsNBoxes/DotsNBoxes.html" class="searchLink">
+                    <span class="gameIcon">✏️</span>
+                    <span class="gameName">Dots &amp; Boxes</span>
+                    <span class="gameTag">Strategy · 2 players</span>
+                </a>
+                <a id="DealNoDeal" href="DealOrNoDeal/DealNoDeal.html" class="searchLink">
+                    <span class="gameIcon">💼</span>
+                    <span class="gameName">Deal or No Deal</span>
+                    <span class="gameTag">Luck · 1 player</span>
+                </a>
+                <a id="Ludo" href="Ludo/Ludo.html" class="searchLink">
+                    <span class="gameIcon">🎲</span>
+                    <span class="gameName">Ludo</span>
+                    <span class="gameTag">Board · 2–4 players</span>
+                </a>
+                <a id="Tetris" href="Tetris/Tetris.html" class="searchLink">
+                    <span class="gameIcon">🧱</span>
+                    <span class="gameName">Tetris</span>
+                    <span class="gameTag">Arcade · 1 player</span>
+                </a>
+                <a id="Snake" href="Snake/Snake.html" class="searchLink">
+                    <span class="gameIcon">🐍</span>
+                    <span class="gameName">Snake</span>
+                    <span class="gameTag">Arcade · 1 player</span>
+                </a>
+                <a id="Wordle" href="Wordle/Wordle.html" class="searchLink">
+                    <span class="gameIcon">🔤</span>
+                    <span class="gameName">Wordle</span>
+                    <span class="gameTag">Word · 1 player</span>
+                </a>
+                <a id="2048" href="2048/2048.html" class="searchLink">
+                    <span class="gameIcon">🧮</span>
+                    <span class="gameName">2048</span>
+                    <span class="gameTag">Puzzle · 1 player</span>
+                </a>
             </div>
-        </div>
+        </main>
 
         <div class="footer">
             <div>

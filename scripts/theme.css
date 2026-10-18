@@ -1,0 +1,239 @@
+/* Shared look and feel for every game page.
+   importNavbar.js loads this after each game's own stylesheet, so these rules win on equal specificity. */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+body {
+    --bg: #f6f2ea;
+    --surface: #ffffff;
+    --surface-2: #fff1ee;
+    --text: #1f2430;
+    --muted: #6b7280;
+    --accent: #ff5e6c;
+    --accent-2: #ff9a5c;
+    /* deeper coral behind white text, so button labels stay readable */
+    --fill: #e03a4e;
+    --fill-2: #e8602f;
+    --border: rgba(31, 36, 48, 0.1);
+    --shadow: 0 12px 32px rgba(31, 36, 48, 0.08), 0 2px 6px rgba(31, 36, 48, 0.05);
+    /* text colour is left to each game: boards keep their own dark numbers on light cells */
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: radial-gradient(1200px 600px at 10% -10%, #ffffff 0, rgba(255, 255, 255, 0) 60%), var(--bg);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+body.dark {
+    --bg: #12151a;
+    --surface: #1c2129;
+    --surface-2: #262c36;
+    --text: #e8ebf0;
+    --muted: #9aa4b2;
+    --accent: #ff6f7c;
+    --accent-2: #ffa36b;
+    --border: rgba(255, 255, 255, 0.08);
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.25);
+    background: radial-gradient(1200px 600px at 10% -10%, #1d2430 0, rgba(29, 36, 48, 0) 60%), var(--bg);
+    background-attachment: fixed;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb,
+body.dark ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    box-shadow: none;
+    background-color: rgba(128, 128, 128, 0.45);
+}
+
+/* ---------- navbar ---------- */
+#navbar .flex-navigation {
+    background: rgba(18, 21, 26, 0.94);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+    min-height: 56px;
+    padding: 0 12px;
+    margin-bottom: 28px !important;
+}
+#navbar .flex-navigation a,
+#navbar .flex-navigation .dropdown,
+#navbar .flex-navigation > div > i {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.78);
+    transition: color 0.2s;
+}
+#navbar .flex-navigation > .flex-center:first-child > a:first-child {
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.3px;
+}
+#navbar .flex-navigation a:hover {
+    color: var(--accent);
+}
+#navbar #changeTheme {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+#navbar .dropdown-menu {
+    border: none;
+    border-radius: 14px;
+    padding: 8px;
+    margin-top: 8px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+    max-height: 70vh;
+    overflow-y: auto;
+}
+#navbar .dropdown-menu > li > a {
+    color: #1f2430;
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin: 0;
+    font-size: 15px;
+}
+#navbar .dropdown-menu > li > a:hover {
+    background: #fff1ee;
+    color: #ff5e6c;
+}
+#navbar .sidemenu {
+    background: rgba(18, 21, 26, 0.97);
+    border-radius: 0 0 16px 0;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- panels ---------- */
+body #controls,
+body .controls,
+body #allControls,
+body .startControls,
+body.dark #controls,
+body.dark .controls,
+body.dark #allControls,
+body.dark .startControls {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+/* some games use #allControls only as a wrapper around the real panels */
+body #allControls:has(.startControls, .controls),
+body.dark #allControls:has(.startControls, .controls) {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+body #controls hr,
+body .controls hr,
+body #allControls hr,
+body .startControls hr {
+    border-top-color: var(--border);
+}
+
+body #instruct,
+body .instruct,
+body.dark #instruct,
+body.dark .instruct {
+    background: var(--surface-2);
+    color: var(--text);
+    border-radius: 14px;
+    font-weight: 600;
+}
+
+/* ---------- buttons ---------- */
+body .btn,
+body.dark .btn {
+    border-radius: 12px;
+    font-weight: 500;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+body .btn-default,
+body.dark .btn-default {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+body .btn-default:hover,
+body .btn-default:focus,
+body.dark .btn-default:hover,
+body.dark .btn-default:focus {
+    background: var(--surface);
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+body .btn:active,
+body.dark .btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* main actions get the accent gradient */
+body #restart,
+body #start,
+body #btnStartGame,
+body #btnNewGame,
+body #btnPlayAgain,
+body.dark #restart,
+body.dark #start,
+body.dark #btnStartGame,
+body.dark #btnNewGame,
+body.dark #btnPlayAgain {
+    background: linear-gradient(135deg, var(--fill), var(--fill-2));
+    color: #fff;
+    border: none;
+    box-shadow: 0 8px 20px rgba(224, 58, 78, 0.3);
+    width: auto;
+    min-width: 120px;
+    padding-left: 24px;
+    padding-right: 24px;
+    white-space: nowrap;
+}
+body #restart:hover,
+body #start:hover,
+body #btnStartGame:hover,
+body #btnNewGame:hover,
+body #btnPlayAgain:hover,
+body.dark #restart:hover,
+body.dark #start:hover,
+body.dark #btnStartGame:hover,
+body.dark #btnNewGame:hover,
+body.dark #btnPlayAgain:hover {
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(224, 58, 78, 0.4);
+    transform: translateY(-1px);
+}
+
+body .btnDiff.active,
+body.dark .btnDiff.active {
+    background: var(--fill);
+    border-color: var(--fill);
+    color: #fff;
+}
+
+/* ---------- popups ---------- */
+body .swal2-popup,
+body .modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* Bootstrap's light green is too pale behind white labels */
+body .btn-success,
+body.dark .btn-success {
+    background-color: #2e8b47;
+    border-color: #277a3d;
+}
+body .btn-success:hover,
+body .btn-success:focus,
+body.dark .btn-success:hover,
+body.dark .btn-success:focus {
+    background-color: #277a3d;
+    border-color: #1f6532;
+}

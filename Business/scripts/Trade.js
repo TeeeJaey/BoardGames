@@ -63,7 +63,7 @@ function performTrade() {
 
     var i = 0;
     while (i < leftCardList.length) {
-        var property = parseInt(leftCardList[0].id.split("tradecard")[1]);
+        var property = parseInt(leftCardList[i].id.split("tradecard")[1]);
         var propertyIndex = players[leftPlayer].properties.lastIndexOf(property);
 
         try {
@@ -84,7 +84,7 @@ function performTrade() {
 
     i = 0;
     while (i < rightCardList.length) {
-        var property = parseInt(rightCardList[0].id.split("tradecard")[1]);
+        var property = parseInt(rightCardList[i].id.split("tradecard")[1]);
         var propertyIndex = players[rightPlayer].properties.lastIndexOf(property);
         try {
             players[rightPlayer].properties.splice(propertyIndex, 1);

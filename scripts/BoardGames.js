@@ -5,22 +5,26 @@ function performSearch() {
         var gameList = document.getElementById("gameList");
         var a = gameList.getElementsByTagName("a");
 
+        var shown = 0;
         for (i = 0; i < a.length; i++) {
             var game = a[i];
-            var txtValue = game.id || game.innerText;
+            var txtValue = game.id + " " + game.innerText;
 
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 game.style.display = "";
+                shown++;
             } else {
                 game.style.display = "none";
             }
         }
+        document.getElementById("noResults").hidden = shown > 0;
     } else {
         var a = document.getElementById("gameList").getElementsByTagName("a");
         for (i = 0; i < a.length; i++) {
             var game = a[i];
             game.style.display = "";
         }
+        document.getElementById("noResults").hidden = true;
     }
 }
 
@@ -34,4 +38,6 @@ $(document).ready(function () {
             performSearch();
         }
     });
+    // filter the cards as the user types
+    $("#searchInput").on("input", performSearch);
 });

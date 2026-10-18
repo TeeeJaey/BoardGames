@@ -11,10 +11,10 @@ class Game {
         this.snake = new Snake();
     }
 
-    moveUp = () => (this.snake.direction = this.snake.direction == "D" ? "D" : "U");
-    moveDown = () => (this.snake.direction = this.snake.direction == "U" ? "U" : "D");
-    moveLeft = () => (this.snake.direction = this.snake.direction == "R" ? "R" : "L");
-    moveRight = () => (this.snake.direction = this.snake.direction == "L" ? "L" : "R");
+    moveUp = () => (this.snake.direction = this.snake.lastDirection == "D" ? this.snake.direction : "U");
+    moveDown = () => (this.snake.direction = this.snake.lastDirection == "U" ? this.snake.direction : "D");
+    moveLeft = () => (this.snake.direction = this.snake.lastDirection == "R" ? this.snake.direction : "L");
+    moveRight = () => (this.snake.direction = this.snake.lastDirection == "L" ? this.snake.direction : "R");
 
     getNewBoard() {
         var newBoard = [];
@@ -37,7 +37,7 @@ class Game {
             const foodCol = Math.floor(Math.random() * cols);
             const foodCell = game.board[foodRow][foodCol];
 
-            if (!foodCell.isDanger && !foodCell.isSnake) {
+            if (!foodCell.isDanger && !foodCell.isSnake && !foodCell.isFood) {
                 placeFood = true;
                 foodCell.setFood();
             }

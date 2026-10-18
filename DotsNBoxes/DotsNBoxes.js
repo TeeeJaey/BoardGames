@@ -222,7 +222,7 @@ const startNewGame = function () {
 };
 
 $(document).ready(function () {
-    importNavbar("dotsNBoxes", "Dots & Boxes");
+    importNavbar("DotsNBoxes", "Dots & Boxes");
     setTheme();
 
     mainContentVue = new Vue({

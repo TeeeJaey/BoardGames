@@ -22,14 +22,13 @@ const startNewGame = function () {
         confirmButtonText: "Yes, I confirm!",
     }).then(result => {
         if (result.isConfirmed) {
-            localStorage.boardgame_sudoku = undefined;
             document.location.reload(true);
         }
     });
 };
 
 $(document).ready(function () {
-    importNavbar("wordle", "Wordle");
+    importNavbar("Wordle", "Wordle");
     setTheme();
 
     mainContentVue = new Vue({

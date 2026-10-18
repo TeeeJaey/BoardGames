@@ -4,6 +4,7 @@ class Snake {
         this.position = ["10:3", "11:3", "12:3"];
         this.color = "#333";
         this.direction = "R";
+        this.lastDirection = "D"; // body lies above the head
         this.setSpeed();
     }
 
@@ -21,6 +22,7 @@ class Snake {
 
     move() {
         let nextPos = "";
+        this.lastDirection = this.direction;
         const head = game.getBoardCellByID(this.position[this.size - 1]);
 
         switch (this.direction) {
@@ -56,10 +58,10 @@ class Snake {
         if (next.isDanger || next.isSnake) game.endGame();
 
         if (next.isFood) {
-            game.resetTimer();
-            this.setSpeed();
             game.score++;
             this.size++;
+            this.setSpeed();
+            game.resetTimer();
         } else this.position = this.position.slice(1);
 
         this.position.push(nextPos);

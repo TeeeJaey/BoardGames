@@ -17,7 +17,17 @@ class Game
 	rotateBlock()
 	{
 		if(!this.currBlock.isSet)
+		{
+			const oldShape = this.currBlock.shape;
+			const oldX = this.currBlock.currentX;
 			this.currBlock.rotate();
+
+			if(this.isSet(this.currBlock))
+			{
+				this.currBlock.shape = oldShape;
+				this.currBlock.currentX = oldX;
+			}
+		}
 	}
 
 	moveDown()
@@ -30,6 +40,11 @@ class Game
 			return;
 
 		this.currBlock.currentY += 1;
+		if(this.isSet(this.currBlock))
+		{
+			this.currBlock.currentY -= 1;
+			return;
+		}
 		this.drawBlock(this.currBlock);
 	}
 
@@ -43,6 +58,11 @@ class Game
 			return;
 
 		this.currBlock.currentX += 1;
+		if(this.isSet(this.currBlock))
+		{
+			this.currBlock.currentX -= 1;
+			return;
+		}
 		this.drawBlock(this.currBlock);
 	}
 
@@ -55,6 +75,11 @@ class Game
 			return;
 			
 		this.currBlock.currentX -= 1;
+		if(this.isSet(this.currBlock))
+		{
+			this.currBlock.currentX += 1;
+			return;
+		}
 		this.drawBlock(this.currBlock);
 	}
 
@@ -102,8 +127,9 @@ class Game
 			if(self.isSet(self.currBlock))
 			{
 				self.setAsSet(self.currBlock);
-				self.getNewBlock();
 				clearInterval(self.blockMover);
+				if(!self.gameOver)
+					self.getNewBlock();
 			}
 			else
 			{
@@ -233,10 +259,13 @@ class Game
 		}
 
 
-		for(var i = row; i > 0; i--)
+		let newRow = [];
+		for(var j = 0 ; j < cols ; j++)
 		{
-			this.board[i] = this.board[i-1];
+			newRow.push( new Cell(0,j) );
 		}
+		this.board.splice(row,1);
+		this.board.unshift(newRow);
 		
 		this.score += cols;
 	}

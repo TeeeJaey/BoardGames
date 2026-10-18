@@ -138,10 +138,10 @@ class PlayerCoin {
         isAnimationOn = true;
         if (!this.started) {
             game.waitCoinSelection = false;
-            game.autoSaveGame();
             this.moveCoin(0);
             isAnimationOn = false;
             this.started = true;
+            game.autoSaveGame();
             return;
         }
 

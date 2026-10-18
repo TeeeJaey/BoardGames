@@ -33,6 +33,7 @@ class Auction
             else 
                 i+=1;
         }
+        this.currentPlayer = this.auctionPlayers.indexOf(currPlayer);
 
         $("#imagePropertyAuction").attr("src",auctionProperty.cardImage);
         $("#PropertySaleModal").modal('hide');

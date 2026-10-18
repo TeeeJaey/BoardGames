@@ -364,7 +364,7 @@ function setupBoard() {
 
     board[38].cellName = "Super Tax";
     board[38].colorGroup = 0;
-    board[38].position = 4;
+    board[38].position = 38;
     board[38].topVal = 400;
 
     board[39].cellName = "Mumbai";

@@ -197,3 +197,8 @@ body.dark .instruct {
         height: 36px;
     }
 }
+
+/* the blue player's score is unreadable on the dark panel */
+body.dark .instruct [style*="color: blue"] {
+    color: #7aa7ff !important;
+}

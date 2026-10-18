@@ -2,7 +2,7 @@ var mainContentVue = new Vue(); // to put data in HTML x
 var game = new Game();
 
 $(document).ready(function () {
-    importNavbar("tetris", "Tetris");
+    importNavbar("Tetris", "Tetris");
     setTheme();
 
     //$('#gameUnderDev').css("display","");
@@ -15,6 +15,7 @@ $(document).ready(function () {
     });
 
     $(document).on("keydown", function (e) {
+        if (game.status != 0) return;
         var key = e.keyCode || e.which;
         switch (key) {
             case 37: {

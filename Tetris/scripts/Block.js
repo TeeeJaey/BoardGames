@@ -19,7 +19,7 @@ class Block
 
     getX()
     {
-        const randomCode = Math.floor(Math.random()*9);
+        const randomCode = Math.floor(Math.random()*8);
         return randomCode+2;
     }
 
@@ -103,7 +103,7 @@ class Block
     {
         
 		const cols = 12;
-        if(game.currBlock.currentX + this.shape.length >= cols)
+        while(game.currBlock.currentX + this.shape.length > cols)
             this.currentX -= 1;
 
         let newShape = [];
@@ -127,7 +127,10 @@ class Block
             newShape[row] = newShape[row].filter(x=>x!==undefined);
 
             if(newShape[row].length == 0)
+            {
                 newShape.splice(row,1);
+                row--;
+            }
         }
 
         this.shape = newShape;

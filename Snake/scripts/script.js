@@ -2,7 +2,7 @@ var mainContentVue = new Vue(); // to put data in HTML x
 var game = new Game();
 
 $(document).ready(function () {
-    importNavbar("snake", "Snake");
+    importNavbar("Snake", "Snake");
     setTheme();
 
     //$('#gameUnderDev').css("display","");

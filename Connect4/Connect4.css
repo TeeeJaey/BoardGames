@@ -106,3 +106,28 @@ body.dark .instruct {
         width: 360px;
     }
 }
+
+/* board look: classic blue frame with sunken holes (discs are coloured inline by the game) */
+#theBoard {
+    border-collapse: separate;
+    border-spacing: 6px;
+    padding: 10px;
+    border-radius: 22px;
+    background: linear-gradient(160deg, #2f6fe4, #1d4fc4);
+    box-shadow: 0 14px 34px rgba(29, 79, 196, 0.35);
+}
+td button {
+    border: none;
+    background-color: #f6f2ea;
+    box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.28);
+}
+body.dark #theBoard {
+    background: linear-gradient(160deg, #22468f, #172f66);
+}
+body.dark td button {
+    background-color: #12151a;
+}
+/* yellow player text needs an outline to read on light panels */
+#instruct {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}

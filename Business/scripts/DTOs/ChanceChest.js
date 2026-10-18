@@ -14,7 +14,7 @@ class ChanceChest {
             case 2: {
                 var i = 0;
                 while (i < nmbrOfPlayers) {
-                    if (i != currPlayer) {
+                    if (i != currPlayer && !players[i].bankrupt) {
                         var log = new Log(i, currPlayer, this.amount, "Birthday present!");
                         log.generateLogDiv();
                         log.prependLogDiv();
@@ -91,7 +91,7 @@ class ChanceChest {
             case 12: {
                 players[currPlayer].position = players[currPlayer].position - 3;
 
-                if (players[currPlayer].position < 0) players[currPlayer].position = 40 - players[currPlayer].position;
+                if (players[currPlayer].position < 0) players[currPlayer].position = 40 + players[currPlayer].position;
 
                 players[currPlayer].topVal = board[players[currPlayer].position].topVal;
                 players[currPlayer].leftVal = board[players[currPlayer].position].leftVal;

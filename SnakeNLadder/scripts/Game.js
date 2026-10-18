@@ -102,7 +102,7 @@ class Game {
                 board[21].snakeOrLadder = new SnakeLadder(21, 42);
                 board[28].snakeOrLadder = new SnakeLadder(28, 84);
                 board[36].snakeOrLadder = new SnakeLadder(36, 44);
-                board[39].snakeOrLadder = new SnakeLadder(46, 25);
+                board[46].snakeOrLadder = new SnakeLadder(46, 25);
                 board[49].snakeOrLadder = new SnakeLadder(49, 11);
                 board[51].snakeOrLadder = new SnakeLadder(51, 67);
                 board[62].snakeOrLadder = new SnakeLadder(62, 19);
@@ -244,7 +244,10 @@ class Game {
 
     autoSave() {
         if (!this.gameStarted) return;
-        if (this.gameOver) return;
+        if (this.gameOver) {
+            delete localStorage.boardgame_snakeladder;
+            return;
+        }
 
         localStorage.boardgame_snakeladder = JSON.stringify(game);
     }

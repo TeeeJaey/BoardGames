@@ -71,7 +71,7 @@ function play() {
         });
     } else {
         players[currPlayer].inJail = false;
-        moveCoin(currCoin);
+        if (diceVal1 != diceVal2 || consecutiveDoubles < 2) moveCoin(currCoin);
     }
 
     if (diceVal1 == diceVal2 && !players[currPlayer].inJail) {
@@ -102,9 +102,9 @@ function moveCoin() {
     var coinMoveAnim = setInterval(function () {
         if (cnt == diceValTotal) {
             clearInterval(coinMoveAnim);
-            checkCell();
             isChanceOn = false;
             $("#btnDone").prop("disabled", false);
+            checkCell();
             return;
         }
         cnt += 1;
@@ -131,10 +131,12 @@ function moveCoin() {
 
 function moveBackWithoutGO(endPos) {
     var currCoin = $("#" + players[currPlayer].color + "Coin");
+    isChanceOn = true;
 
     var coinMoveAnim = setInterval(function () {
         if (players[currPlayer].position == endPos) {
             clearInterval(coinMoveAnim);
+            isChanceOn = false;
             checkCell();
             return;
         }
@@ -158,10 +160,12 @@ function moveBackWithoutGO(endPos) {
 
 function moveAheadWithGO(endPos) {
     var currCoin = $("#" + players[currPlayer].color + "Coin");
+    isChanceOn = true;
 
     var coinMoveAnim = setInterval(function () {
         if (players[currPlayer].position == endPos) {
             clearInterval(coinMoveAnim);
+            isChanceOn = false;
             checkCell();
             return;
         }
@@ -304,7 +308,6 @@ function refreshGameUI() {
     $("#" + players[currPlayer].color + "Data").addClass("currChanceData");
 
     $(".currentChanceBtns").appendTo("#" + players[currPlayer].color + "Data");
-    consecutiveDoubles = 0;
 }
 
 function getRank() {

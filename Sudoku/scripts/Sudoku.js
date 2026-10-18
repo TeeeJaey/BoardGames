@@ -83,7 +83,7 @@ function checkArrowKey(btn) {
 }
 
 $(document).ready(function () {
-    importNavbar("sudoku", "Sudoku");
+    importNavbar("Sudoku", "Sudoku");
     setTheme();
 
     mainContentVue = new Vue({

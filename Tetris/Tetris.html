@@ -66,9 +66,8 @@
                                 <tr v-for="row in game.nextBlock.shape">
                                     <td
                                         v-for="x in row"
-                                        v-if="x"
                                         class="cell"
-                                        v-bind:style="{backgroundColor: game.nextBlock.color}"
+                                        v-bind:style="{backgroundColor: game.nextBlock.color, visibility: x ? 'visible' : 'hidden'}"
                                     ></td>
                                 </tr>
                             </table>

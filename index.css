@@ -1,16 +1,22 @@
 ::-webkit-scrollbar {
-    width: 5px;
-    background-color: #f5f5f5;
+    width: 8px;
+    background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
-    background-color: #1f0303;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 body {
-    background-color: #333;
+    --accent: #ff5e6c;
+    --accent-2: #ff9a5c;
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background-color: #12151a;
+    color: #e8ebf0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 .flex-center {
     display: flex;
@@ -21,58 +27,167 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: #222;
+    background: rgba(18, 21, 26, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
     width: 100%;
     margin: 0px;
+    padding: 0 12px;
     justify-content: space-between;
-    min-height: 55px;
+    min-height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .flex-navigation > #searchForm {
     margin: 10px;
     float: right;
+    justify-content: flex-end;
 }
 
 .flex-navigation > div > a,
 .flex-navigation > div > i {
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: 700;
     margin: 10px;
     text-decoration: none;
-    color: rgb(256, 256, 256, 0.8);
+    color: #fff;
 }
 .flex-navigation a:hover,
 .flex-navigation a:active {
     text-decoration: none;
-    color: white;
+    color: var(--accent);
 }
 
+#searchInput {
+    width: 240px;
+    height: 40px;
+    padding: 0 16px;
+    font-size: 15px;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px 0 0 999px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+}
+#searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+#searchInput:focus {
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.12);
+}
+#searchSubmit {
+    height: 40px;
+    padding: 0 16px;
+    color: #fff;
+    border: none;
+    border-radius: 0 999px 999px 0;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+#searchSubmit:hover,
+#searchSubmit:focus {
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    filter: brightness(1.08);
+}
+#searchSubmit i {
+    font-size: 16px !important;
+}
+
+/* the photo sits behind a dark, blurred wash so the cards stay readable */
 .backgroundImage {
     position: fixed;
-    margin-top: -20px;
-    width: 100%;
+    inset: 0;
     z-index: -5;
-    min-height: 90%;
+    background: linear-gradient(180deg, rgba(18, 21, 26, 0.75), rgba(18, 21, 26, 0.95)), url("images/boardGames.jpg") center / cover;
+    filter: blur(3px);
+    transform: scale(1.05);
+}
+
+.home {
+    flex: 1;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 24px 32px;
+    text-align: center;
+}
+.homeTitle {
+    margin: 0;
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+.homeSub {
+    margin: 10px 0 36px;
+    font-size: 17px;
+    color: rgba(232, 235, 240, 0.7);
+}
+.noResults {
+    font-size: 17px;
+    color: rgba(232, 235, 240, 0.7);
 }
 
 .game-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.searchLink {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 90%;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    margin: 50px 0px;
+    gap: 6px;
+    min-height: 180px;
+    padding: 24px 16px;
+    color: #fff;
+    background: rgba(28, 33, 41, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.searchLink:hover,
+.searchLink:focus,
+.searchLink:active {
+    color: #fff;
+    text-decoration: none;
+    transform: translateY(-4px);
+    background: rgba(36, 42, 52, 0.85);
+    border-color: var(--accent);
+    box-shadow: 0 16px 36px rgba(255, 94, 108, 0.25);
+}
+.gameIcon {
+    font-size: 44px;
+    line-height: 1;
+    margin-bottom: 8px;
+    transition: transform 0.2s;
+}
+.searchLink:hover .gameIcon {
+    transform: scale(1.12) rotate(-4deg);
+}
+.gameName {
+    font-size: 19px;
+    font-weight: 600;
+}
+.gameTag {
+    font-size: 13px;
+    color: rgba(232, 235, 240, 0.6);
 }
 
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
-    background-color: #333;
-    color: white;
+    background: rgba(18, 21, 26, 0.85);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(232, 235, 240, 0.75);
     text-align: center;
-    padding-bottom: 5px;
-    padding: 10px;
+    padding: 14px 10px;
     font-size: 14px;
 }
 
@@ -81,34 +196,10 @@ body {
     color: inherit;
     padding: 0px 10px;
     font-size: 18px;
+    transition: color 0.2s;
 }
-
-.searchLinks {
-    position: fixed;
-    width: 110%;
-    height: calc(100vh - 110px);
-    overflow-y: auto;
-}
-
-.searchLink {
-    display: flex;
-    font-size: 22px;
-    height: 175px;
-    width: 200px;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(0, 0, 0, 0.8);
-    border: 2px solid black;
-    color: white;
-    transition: color 0.3s, background 0.3s, font 0.3s;
-}
-
-.searchLink:hover,
-.searchLink:active {
-    font-size: 24px;
-    color: #2feefc;
-    background-color: rgb(0, 0, 0, 1);
-    text-decoration: none;
+.footerLinks:hover {
+    color: var(--accent);
 }
 
 .logo {
@@ -117,22 +208,43 @@ body {
 }
 
 @media (max-width: 565px) {
+    .home {
+        padding: 28px 16px 24px;
+    }
+    .homeTitle {
+        font-size: 32px;
+    }
+    .homeSub {
+        margin-bottom: 24px;
+        font-size: 15px;
+    }
+    .game-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
     .searchLink {
-        width: 90%;
+        min-height: 140px;
+        padding: 18px 10px;
+    }
+    .gameIcon {
+        font-size: 36px;
+    }
+    .gameName {
+        font-size: 16px;
+    }
+    .gameTag {
+        font-size: 12px;
     }
     #searchInput {
         width: 75%;
         font-size: 16px;
-        height: 35px;
+        height: 36px;
+    }
+    #searchSubmit {
+        height: 36px;
     }
     #searchForm {
         width: 60%;
-    }
-    .instruct {
-        background-color: #fff5d7;
-        padding: 10px;
-        font-size: 20px;
-        font-weight: bold;
     }
     .footer {
         font-size: 12px;

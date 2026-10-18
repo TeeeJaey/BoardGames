@@ -73,10 +73,11 @@ function importNavbar(htmlName, displayName) {
 		flex-direction:column;
 		transition: left 0.4s;
 	}
-	.sidemenu a { 
+	.sidemenu a {
 		font-size: 18px;
 	}
 </style>
+<link type="text/css" rel="stylesheet" href="../scripts/theme.css" />
 
 <script>
 	function toggleSideMenu() {

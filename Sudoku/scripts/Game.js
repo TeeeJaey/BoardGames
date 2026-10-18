@@ -449,6 +449,7 @@ class Game {
             game.difficultyText = loadedgame.difficultyText;
             game.boardData = loadedgame.boardData;
             game.fullBoard = loadedgame.fullBoard;
+            selectedCellID = loadedgame.selectedCellID || null;
 
             mainContentVue.controls = 0;
             return true;

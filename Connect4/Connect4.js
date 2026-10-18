@@ -181,6 +181,18 @@ $(document).ready(function () {
                 i++;
             }
 
+            // Check draw (board full)
+            var boardFull = true;
+            $($(this).parent().parent().children().get(0)).find("button").each(function () {
+                if (this.style.backgroundColor != "yellow" && this.style.backgroundColor != "red") boardFull = false;
+            });
+            if (boardFull) {
+                playerWon = true;
+                $("#instruct")[0].style.color = "";
+                $("#instruct")[0].innerText = "It's a draw!";
+                return;
+            }
+
             // Change player
 
             if (player == 1) {
